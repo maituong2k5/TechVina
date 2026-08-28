@@ -3,6 +3,7 @@ import "./Header.scss";
 import { Container } from "react-bootstrap";
 import logo from "../../assets/TechVina-logo.png";
 import SearchBar from "./SearchBar/SearchBar";
+import Login from "./Login/Login";
 
 const Header = () => {
   return (
@@ -13,6 +14,7 @@ const Header = () => {
             <img src={logo} alt="TechVina" />
           </div>
           <SearchBar />
+          <Login />
         </div>
       </Container>
     </header>

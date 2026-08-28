@@ -1,23 +1,27 @@
 .search-bar {
   position: relative;
-  flex: 1;
-  padding-left: 30px;
-  .search-icon {
+  width: 40%;
+  margin-left: 20px;
+  button {
     position: absolute;
-    left: 50px;
+    left: 15px;
     top: 50%;
     transform: translateY(-50%);
 
-    color: #777;
-    font-size: 16px;
-    z-index: 2;
-  }
+    background-color: transparent;
+    border: none;
+    padding: 0;
 
+    .search-icon {
+      color: #777;
+      font-size: 16px;
+    }
+  }
   .form-control {
     height: 40px;
     border-radius: 20px;
-    padding-left: 50px;
-    width: 50%;
+    padding-left: 45px;
+    width: 100%;
 
     &:focus {
       box-shadow: none;

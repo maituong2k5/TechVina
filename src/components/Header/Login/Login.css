@@ -1,0 +1,20 @@
+.profile {
+  margin-left: 15px;
+  a {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #333;
+    text-decoration: none;
+    font-size: 22px;
+    &:hover {
+      border-radius: 32px;
+      background-color: rgba(70, 130, 180, 0.35);
+      color: #222;
+    }
+  }
+  svg {
+    font-size: 20px;
+    transition: transform 0.25s ease;
+  }
+}
