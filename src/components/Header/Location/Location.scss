@@ -1,0 +1,34 @@
+.header__location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  padding: 6px 10px;
+  margin-left: 15px;
+  border: none;
+  border-radius: 30px;
+
+  background: rgb(146, 183, 232);
+
+  color: #222;
+  cursor: pointer;
+
+  &__icon {
+    flex-shrink: 0;
+    font-size: 13px;
+  }
+
+  &__text {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  &__arrow {
+    flex-shrink: 0;
+    font-size: 8px;
+  }
+
+  &:hover {
+    background-color: var(--background-color);
+  }
+}

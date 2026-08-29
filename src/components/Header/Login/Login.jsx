@@ -1,13 +1,15 @@
 import { FiUser } from "react-icons/fi";
-import "./Login.css";
+import { Link } from "react-router-dom";
+import "./Login.scss";
 
 const Login = () => {
   return (
-    <div className="profile">
-      <a href="/">
-        <FiUser />
-        Đăng nhập
-      </a>
+    <div className="header__profile">
+      <Link to="/login" className="header__profile-link">
+        <FiUser className="header__profile-icon" />
+
+        <span className="header__profile-text">Đăng nhập</span>
+      </Link>
     </div>
   );
 };

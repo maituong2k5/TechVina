@@ -1,0 +1,25 @@
+.header__cart {
+  margin-left: 15px;
+
+  &-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--text-color);
+    text-decoration: none;
+
+    &:hover {
+      border-radius: 32px;
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+  }
+
+  &-icon {
+    font-size: 20px;
+  }
+
+  &-text {
+    font-size: 20px;
+  }
+}

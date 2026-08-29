@@ -1,12 +1,20 @@
-import Header from "../src/components/Header/Header";
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage/HomePage";
+import LoginPage from "./components/Header/Login/Login";
+import MainLayout from "./layouts/MainLayout/MainLayout";
 import "./App.css";
+import Cart from "./components/Header/Cart/Cart";
 
-function App() {
+const App = () => {
   return (
-    <>
-      <Header></Header>
-    </>
+    <Routes>
+      <Route element={<MainLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/cart" element={<Cart />} />
+      </Route>
+    </Routes>
   );
-}
+};
 
 export default App;

@@ -1,20 +1,28 @@
-.profile {
+.header__profile {
   margin-left: 15px;
-  a {
+
+  &-link {
     display: flex;
     align-items: center;
     gap: 4px;
+
     color: #333;
     text-decoration: none;
     font-size: 22px;
+
     &:hover {
       border-radius: 32px;
-      background-color: rgba(70, 130, 180, 0.35);
-      color: #222;
+      background-color: var(--background-color);
+      color: var(--text-color);
     }
   }
-  svg {
+
+  &-icon {
     font-size: 20px;
     transition: transform 0.25s ease;
+  }
+
+  &-text {
+    font-size: 20px;
   }
 }

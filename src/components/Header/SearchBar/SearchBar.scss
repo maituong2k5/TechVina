@@ -1,8 +1,9 @@
-.search-bar {
+.search {
   position: relative;
   width: 40%;
   margin-left: 20px;
-  button {
+
+  &__button {
     position: absolute;
     left: 15px;
     top: 50%;
@@ -11,16 +12,17 @@
     background-color: transparent;
     border: none;
     padding: 0;
-
-    .search-icon {
-      color: #777;
-      font-size: 16px;
-    }
   }
-  .form-control {
+
+  &__icon {
+    color: #777;
+    font-size: 16px;
+  }
+
+  &__input {
     height: 40px;
     border-radius: 20px;
-    padding-left: 45px;
+    padding-left: 45px !important;
     width: 100%;
 
     &:focus {

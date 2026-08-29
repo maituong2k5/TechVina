@@ -2,15 +2,14 @@
   width: 100%;
   background-color: #a8d0ed;
   height: 72px;
-  .header-top {
+  &__top {
     display: flex;
     align-items: center;
-    .header-logo {
-      img {
-        width: 220px;
-        height: auto;
-        display: block;
-      }
-    }
+  }
+
+  &__img {
+    width: 220px;
+    height: auto;
+    display: block;
   }
 }

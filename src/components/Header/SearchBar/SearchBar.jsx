@@ -4,15 +4,17 @@ import "./SearchBar.scss";
 
 const SearchBar = () => {
   return (
-    <div className="search-bar">
-      <button type="submit">
-        <FaSearch className="search-icon" />
+    <form className="search">
+      <button className="search__button" type="submit">
+        <FaSearch className="search__icon" />
       </button>
+
       <Form.Control
+        className="search__input"
         type="search"
         placeholder="Tìm kiếm sản phẩm, thương hiệu..."
       />
-    </div>
+    </form>
   );
 };
 
