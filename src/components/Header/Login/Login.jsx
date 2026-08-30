@@ -5,7 +5,7 @@ import "./Login.scss";
 const Login = () => {
   return (
     <div className="header__profile">
-      <Link to="/login" className="header__profile-link">
+      <Link to="/dang-nhap" className="header__profile-link">
         <FiUser className="header__profile-icon" />
 
         <span className="header__profile-text">Đăng nhập</span>

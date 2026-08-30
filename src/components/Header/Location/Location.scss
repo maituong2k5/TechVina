@@ -1,21 +1,27 @@
 .header__location {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
 
-  padding: 6px 10px;
+  padding: 6px 12px;
   margin-left: 15px;
+
   border: none;
   border-radius: 30px;
-
   background: rgb(146, 183, 232);
+  color: var(--text-color);
 
-  color: #222;
   cursor: pointer;
+
+  width: fit-content;
+  max-width: 350px;
 
   &__icon {
     flex-shrink: 0;
-    font-size: 13px;
+    font-size: 15px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__text {

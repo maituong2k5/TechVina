@@ -6,6 +6,7 @@ import SearchBar from "./SearchBar/SearchBar";
 import Login from "./Login/Login";
 import Cart from "./Cart/Cart";
 import Location from "./Location/Location";
+import Category from "./Category/CategoryNav";
 
 import "./Header.scss";
 
@@ -21,6 +22,10 @@ const Header = () => {
           <Login />
           <Cart />
           <Location />
+        </div>
+
+        <div className="header_main">
+          <Category />
         </div>
       </Container>
     </header>
