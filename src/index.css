@@ -54,6 +54,7 @@
 
 body {
   margin: 0;
+  background: url("./assets/bg-main.jpg");
 }
 
 #root {

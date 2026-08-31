@@ -28,19 +28,13 @@
   // Mega menu mặc định ẩn
   &__mega-menu {
     display: none;
-
     position: absolute;
     top: 100%;
     left: 0;
-
     width: 1000px;
-
     background-color: var(--background-color);
-
     padding: 20px;
-
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
     z-index: 1000;
   }
 
