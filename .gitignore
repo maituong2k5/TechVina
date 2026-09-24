@@ -1,0 +1,12 @@
+/.metadata/
+# Maven
+**/target/
+
+# Eclipse / Spring Tools
+.metadata/
+.settings/
+.classpath
+.project
+
+# Java
+*.class
