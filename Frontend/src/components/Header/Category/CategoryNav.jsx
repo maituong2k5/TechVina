@@ -2,14 +2,13 @@ import { Link } from "react-router-dom";
 import {
   LuSmartphone,
   LuLaptop,
-  LuHeadphones,
   LuWatch,
-  LuClock3,
   LuTablet,
   LuMonitor,
   LuChevronDown,
 } from "react-icons/lu";
 import "./CategoryNav.scss";
+import AccessoryMenu from "./AccessoryMenu/AccessoryMenu";
 import IconOlePhone from "../../../assets/may-cu-24x24.png";
 const Category = () => {
   return (
@@ -24,13 +23,7 @@ const Category = () => {
         <span>Laptop</span>
       </Link>
 
-      <div className="category-nav__item category-nav__item--hasmenu">
-        <Link to="/phu-kien" className="category-nav__link">
-          <LuHeadphones />
-          <span>Phụ kiện</span>
-          <LuChevronDown className="category-nav__arrow" />
-        </Link>
-      </div>
+      <AccessoryMenu />
 
       <Link to="/dong-ho-thong-minh-ldp" className="category-nav__link">
         <LuWatch />

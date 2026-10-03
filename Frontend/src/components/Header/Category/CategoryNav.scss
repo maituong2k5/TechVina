@@ -25,23 +25,119 @@
     }
   }
 
-  // Mega menu mặc định ẩn
+  // ==========================================
+  // MEGA MENU
+  // ==========================================
+
   &__mega-menu {
     display: none;
+
     position: absolute;
     top: 100%;
     left: 0;
-    width: 1000px;
-    background-color: var(--background-color);
-    padding: 20px;
+
+    width: 1100px;
+
+    background-color: #fff;
+
+    padding: 20px 24px;
+
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
     z-index: 1000;
+
+    box-sizing: border-box;
+
+    // 4 nhóm lớn trên một hàng
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    // Khoảng cách giữa các nhóm
+    column-gap: 40px;
+
+    // Khoảng cách giữa các hàng
+    row-gap: 32px;
   }
 
-  // Hover vào item → hiện mega menu
+  // Hover vào Phụ kiện → hiện mega menu
   &__item:hover &__mega-menu {
-    display: flex;
+    display: grid;
   }
+
+  // ==========================================
+  // NHÓM DANH MỤC LỚN
+  // ==========================================
+
+  &__mega-menu > div {
+    min-width: 0;
+  }
+
+  // Tiêu đề nhóm
+  &__mega-menu h3 {
+    margin: 0 0 18px;
+
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+
+    color: #222;
+  }
+
+  // ==========================================
+  // CÁC DANH MỤC CON
+  // ==========================================
+
+  &__category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    img {
+      width: 60px;
+      height: 60px;
+
+      object-fit: contain;
+
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin: 0;
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.35;
+      cursor: pointer;
+      color: #333;
+    }
+  }
+
+  // ==========================================
+  // GRID CÁC SẢN PHẨM TRONG TỪNG NHÓM
+  // ==========================================
+
+  &__mega-menu > div {
+    display: grid;
+
+    // 6 item trên một hàng
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+
+    column-gap: 6px;
+    row-gap: 18 px;
+
+    align-items: start;
+  }
+
+  // H3 chiếm toàn bộ chiều ngang của nhóm
+  &__mega-menu > div > h3 {
+    grid-column: 1 / -1;
+  }
+
+  // ==========================================
+  // HOVER
+  // ==========================================
 
   &__item:hover &__link {
     background-color: var(--background-color);
