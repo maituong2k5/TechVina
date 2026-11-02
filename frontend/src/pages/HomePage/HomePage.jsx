@@ -1,12 +1,14 @@
-import Banner from "./Banner/Banner";
-import { Container } from "react-bootstrap";
+import { Container, Carousel } from "react-bootstrap";
+import "./HomePage.scss";
+import HeroBanner from "./HeroBanner/HeroBanner";
+
 const HomePage = () => {
   return (
-    <>
-      <Container>
-        <Banner />
-      </Container>
-    </>
+    <Container>
+      <div className="home-page">
+        <HeroBanner />
+      </div>
+    </Container>
   );
 };
 

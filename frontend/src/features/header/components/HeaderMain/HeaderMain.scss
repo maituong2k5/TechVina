@@ -1,0 +1,122 @@
+.header-main {
+  width: 100%;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+
+  &__content {
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  // Logo TechVina
+  &__logo {
+    color: var(--color-text-primary);
+    font-size: 30px;
+    font-weight: 800;
+
+    span {
+      color: var(--color-primary);
+    }
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 130px;
+    border-radius: 5px;
+    background: #fff;
+    border: 1px solid #6687;
+    background-color: var(--color-primary);
+    color: #fff;
+    &:hover {
+      background-color: var(--color-primary-hover);
+    }
+
+    .category-button__icon {
+      margin-left: 10px;
+    }
+  }
+
+  // Thanh tìm kiếm
+  &__search {
+    flex: 1;
+    max-width: 500px;
+    height: 45px;
+    display: flex;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    overflow: hidden;
+
+    input {
+      flex: 1;
+      min-width: 0;
+      padding: 0 14px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    button {
+      width: 50px;
+      border: none;
+      background-color: var(--color-primary);
+      color: white;
+      font-size: 16px;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: var(--color-primary-hover);
+      }
+    }
+  }
+
+  // Tài khoản và giỏ hàng
+  .header-main__location {
+    width: 120px;
+    height: 45px;
+    border-radius: 5px;
+    background: var(--color-primary);
+    border: 1px solid #fff;
+    color: #fff;
+    .ic-map {
+      margin-right: 10px;
+    }
+
+    .ic-down {
+      margin-left: 10px;
+    }
+    &:hover {
+      background-color: var(--color-primary-hover);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  &__action {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--color-text-primary);
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: color 0.2s;
+
+    svg {
+      color: var(--color-primary);
+      font-size: 27px;
+    }
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+}

@@ -1,0 +1,52 @@
+.hero-banner {
+  width: 100%;
+  padding: 0 0 24px;
+  background-color: var(--color-background);
+
+  // Khung chứa banner
+  .carousel {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+  }
+
+  // Ảnh banner
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  // Nút điều hướng trái và phải
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 6%;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+
+    // Đổi màu icon mũi tên thành xanh
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      filter: invert(31%) sepia(95%) saturate(1800%) hue-rotate(195deg)
+        brightness(90%) contrast(95%);
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  // Các dấu chấm chuyển ảnh
+  .carousel-indicators {
+    margin-bottom: 16px;
+
+    button {
+      width: 32px;
+      height: 4px;
+      border: 0;
+      border-radius: 4px;
+    }
+  }
+}

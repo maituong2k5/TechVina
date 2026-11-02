@@ -1,0 +1,41 @@
+/* =================================
+   TECHVINA - DESIGN TOKENS
+   Quản lý màu sắc và kích thước chung
+================================= */
+
+:root {
+  /* Brand colors */
+  --color-primary: #1769d2;
+  --color-primary-hover: #1256b0;
+  --color-primary-light: #eaf3ff;
+
+  /* Text colors */
+  --color-text-primary: #172b4d;
+  --color-text-secondary: #64748b;
+  --color-text-white: #ffffff;
+
+  /* Background colors */
+  --color-background: #f4f7fb;
+  --color-surface: #ffffff;
+
+  /* Border */
+  --color-border: #e2e8f0;
+
+  /* Status colors */
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+  --color-warning: #f59e0b;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  /* Layout */
+  --container-width: 1200px;
+}
