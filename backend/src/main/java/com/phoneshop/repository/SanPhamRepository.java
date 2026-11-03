@@ -15,6 +15,8 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Integer> {
 
     /**
      * Lấy danh sách sản phẩm đang hoạt động và được đánh dấu nổi bật.
-     */
+     */	
+	
     List<SanPham> findByTrangThaiTrueAndNoiBatTrue();
+    
 }

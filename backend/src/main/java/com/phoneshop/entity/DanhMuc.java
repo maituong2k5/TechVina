@@ -35,7 +35,7 @@ public class DanhMuc {
     // Trạng thái: true = hiển thị, false = ẩn
     @Column(name = "TrangThai", nullable = false)
     private Boolean trangThai = true;
-
+    
     // Constructor rỗng để JPA sử dụng
     public DanhMuc() {
     }
@@ -80,4 +80,5 @@ public class DanhMuc {
     public void setTrangThai(Boolean trangThai) {
         this.trangThai = trangThai;
     }
+       
 }

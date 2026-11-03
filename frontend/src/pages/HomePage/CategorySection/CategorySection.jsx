@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import danhMucService from "../../../services/danhMucService";
-import { Container, Row, Col } from "react-bootstrap";
+import "./CategorySection.scss";
 
 /**
  * Component hiển thị danh sách danh mục sản phẩm.

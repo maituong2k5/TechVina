@@ -13,6 +13,7 @@ import com.phoneshop.entity.DanhMuc;
  */
 public interface DanhMucRepository extends JpaRepository<DanhMuc, Integer> {
 	List<DanhMuc> findByTrangThaiTrueOrderByThuTuHienThiAsc();	
+	
 }
 
 

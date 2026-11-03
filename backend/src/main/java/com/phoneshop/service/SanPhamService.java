@@ -27,4 +27,6 @@ public class SanPhamService {
     public List<SanPham> laySanPhamNoiBat() {
         return sanPhamRepository.findByTrangThaiTrueAndNoiBatTrue();
     }
+    
+    
 }
