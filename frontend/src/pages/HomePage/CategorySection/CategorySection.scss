@@ -1,0 +1,110 @@
+.category-section {
+  background: #ffffff;
+  padding: 20px 24px;
+  margin: 16px auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #172b4d;
+    margin-bottom: 16px;
+  }
+
+  // Lưới danh mục: 8 cột trên desktop
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  // Từng danh mục
+  &__item {
+    min-height: 175px;
+    padding: 20px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+    border-right: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    cursor: pointer;
+
+    img {
+      width: 100px;
+      height: 80px;
+      object-fit: contain;
+    }
+
+    span {
+      font-size: 18px;
+      color: #222222;
+    }
+
+    &:hover {
+      background-color: #b1b4b9;
+    }
+
+    // Bỏ đường viền bên phải cột cuối
+    &:nth-child(8n) {
+      border-right: none;
+    }
+
+    // Bỏ đường viền dưới hàng cuối
+    &:nth-last-child(-n + 8) {
+      border-bottom: none;
+    }
+  }
+}
+
+// Tablet
+@media (max-width: 991px) {
+  .category-section__list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .category-section__item {
+    &:nth-child(8n) {
+      border-right: 1px solid #eeeeee;
+    }
+
+    &:nth-child(4n) {
+      border-right: none;
+    }
+
+    &:nth-last-child(-n + 8) {
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    &:nth-last-child(-n + 4) {
+      border-bottom: none;
+    }
+  }
+}
+
+// Mobile
+@media (max-width: 575px) {
+  .category-section__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .category-section__item {
+    &:nth-child(4n) {
+      border-right: 1px solid #eeeeee;
+    }
+
+    &:nth-child(2n) {
+      border-right: none;
+    }
+
+    &:nth-last-child(-n + 4) {
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    &:nth-last-child(-n + 2) {
+      border-bottom: none;
+    }
+  }
+}

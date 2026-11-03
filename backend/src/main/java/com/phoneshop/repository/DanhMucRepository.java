@@ -1,6 +1,7 @@
 package com.phoneshop.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
 import com.phoneshop.entity.DanhMuc;
 
@@ -11,5 +12,8 @@ import com.phoneshop.entity.DanhMuc;
  * save() - deleteById()
  */
 public interface DanhMucRepository extends JpaRepository<DanhMuc, Integer> {
-
+	List<DanhMuc> findByTrangThaiTrueOrderByThuTuHienThiAsc();	
 }
+
+
+	

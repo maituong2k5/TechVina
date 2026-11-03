@@ -59,27 +59,27 @@ public class DanhMucService {
 	 */
 	public DanhMuc updateDanhMuc(Integer id, DanhMuc danhMuc) {
 
-		// Tìm danh mục theo ID
-		DanhMuc danhMucCu = danhMucRepository.findById(id).orElseThrow(
-				() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Không tìm thấy danh mục có ID: " + id));
+	    // Tìm danh mục hiện tại theo ID
+	    DanhMuc danhMucCu = danhMucRepository.findById(id)
+	            .orElseThrow(() -> new ResponseStatusException(
+	                    HttpStatus.NOT_FOUND,
+	                    "Không tìm thấy danh mục có ID: " + id
+	            ));
 
-		// Cập nhật tên danh mục
-		danhMucCu.setTenDanhMuc(danhMuc.getTenDanhMuc());
+	    // Cập nhật tên danh mục
+	    danhMucCu.setTenDanhMuc(danhMuc.getTenDanhMuc());
 
-		// Cập nhật danh mục cha
-		danhMucCu.setDanhMucCha(danhMuc.getDanhMucCha());
+	    // Cập nhật đường dẫn ảnh
+	    danhMucCu.setDuongDanAnh(danhMuc.getDuongDanAnh());
 
-		// Cập nhật đường dẫn ảnh
-		danhMucCu.setDuongDanAnh(danhMuc.getDuongDanAnh());
+	    // Cập nhật thứ tự hiển thị
+	    danhMucCu.setThuTuHienThi(danhMuc.getThuTuHienThi());
 
-		// Cập nhật thứ tự hiển thị
-		danhMucCu.setThuTuHienThi(danhMuc.getThuTuHienThi());
+	    // Cập nhật trạng thái
+	    danhMucCu.setTrangThai(danhMuc.getTrangThai());
 
-		// Cập nhật trạng thái
-		danhMucCu.setTrangThai(danhMuc.getTrangThai());
-
-		// Lưu lại vào CSDL
-		return danhMucRepository.save(danhMucCu);
+	    // Lưu thông tin đã cập nhật
+	    return danhMucRepository.save(danhMucCu);
 	}
 
 	/**
@@ -96,5 +96,15 @@ public class DanhMucService {
 
 		// Xóa danh mục
 		danhMucRepository.deleteById(id);
+	}
+	
+	/**
+	 * Lấy danh sách danh mục đang hoạt động,
+	 * sắp xếp theo thứ tự hiển thị tăng dần.
+	 *
+	 * @return danh sách danh mục đang hoạt động
+	 */
+	public List<DanhMuc> getDanhMucDangHoatDong() {
+	    return danhMucRepository.findByTrangThaiTrueOrderByThuTuHienThiAsc();
 	}
 }

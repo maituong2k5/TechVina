@@ -58,6 +58,18 @@ public class DanhMucController {
 	public DanhMuc getDanhMucById(@PathVariable Integer id) {
 		return danhMucService.getDanhMucById(id);
 	}
+	
+	/**
+	 * API lấy danh sách danh mục đang hoạt động.
+	 *
+	 * GET /api/danh-muc/active
+	 *
+	 * @return danh sách danh mục đang hoạt động
+	 */
+	@GetMapping("/active")
+	public List<DanhMuc> getDanhMucDangHoatDong() {
+	    return danhMucService.getDanhMucDangHoatDong();
+	}
 
 	/**
 	 * API thêm một danh mục mới.
@@ -98,4 +110,6 @@ public class DanhMucController {
 	public void deleteDanhMuc(@PathVariable Integer id) {
 		danhMucService.deleteDanhMuc(id);
 	}
+	
+	
 }

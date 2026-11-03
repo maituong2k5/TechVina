@@ -1,115 +1,83 @@
 package com.phoneshop.entity;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+/**
+ * Entity ánh xạ với bảng DanhMuc trong CSDL.
+ */
 @Entity
 @Table(name = "danhmuc")
 public class DanhMuc {
 
-	// Khóa chính
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "MaDanhMuc")
-	private Integer maDanhMuc;
+    // Khóa chính
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "MaDanhMuc")
+    private Integer maDanhMuc;
 
-	// Tên danh mục
-	@Column(name = "TenDanhMuc", length = 100, nullable = false, unique = true)
-	private String tenDanhMuc;
+    // Tên danh mục
+    @Column(name = "TenDanhMuc", length = 100, nullable = false, unique = true)
+    private String tenDanhMuc;
 
-	// Danh mục cha
-	@ManyToOne
-	@JoinColumn(name = "MaDanhMucCha")
-	@JsonBackReference
-	private DanhMuc danhMucCha;
+    // Đường dẫn hình ảnh danh mục
+    @Column(name = "DuongDanAnh", length = 255)
+    private String duongDanAnh;
 
-	// Danh sách danh mục con
-	@OneToMany(mappedBy = "danhMucCha")
-	@JsonManagedReference
-	private List<DanhMuc> danhMucCon;
+    // Thứ tự hiển thị trên website
+    @Column(name = "ThuTuHienThi", nullable = false)
+    private Integer thuTuHienThi = 0;
 
-	// Đường dẫn hình ảnh của danh mục
-	@Column(name = "DuongDanAnh", length = 255)
-	private String duongDanAnh;
+    // Trạng thái: true = hiển thị, false = ẩn
+    @Column(name = "TrangThai", nullable = false)
+    private Boolean trangThai = true;
 
-	// Thứ tự hiển thị danh mục
-	@Column(name = "ThuTuHienThi", nullable = false)
-	private Integer thuTuHienThi;
+    // Constructor rỗng để JPA sử dụng
+    public DanhMuc() {
+    }
 
-	// Trạng thái hoạt động của danh mục
-	@Column(name = "TrangThai", nullable = false)
-	private Boolean trangThai;
+    // Getter và Setter
+    public Integer getMaDanhMuc() {
+        return maDanhMuc;
+    }
 
-	// Constructor rỗng để JPA sử dụng
-	public DanhMuc() {
-	}
+    public void setMaDanhMuc(Integer maDanhMuc) {
+        this.maDanhMuc = maDanhMuc;
+    }
 
-	// Getter và Setter
-	public Integer getMaDanhMuc() {
-		return maDanhMuc;
-	}
+    public String getTenDanhMuc() {
+        return tenDanhMuc;
+    }
 
-	public void setMaDanhMuc(Integer maDanhMuc) {
-		this.maDanhMuc = maDanhMuc;
-	}
+    public void setTenDanhMuc(String tenDanhMuc) {
+        this.tenDanhMuc = tenDanhMuc;
+    }
 
-	public String getTenDanhMuc() {
-		return tenDanhMuc;
-	}
+    public String getDuongDanAnh() {
+        return duongDanAnh;
+    }
 
-	public void setTenDanhMuc(String tenDanhMuc) {
-		this.tenDanhMuc = tenDanhMuc;
-	}
+    public void setDuongDanAnh(String duongDanAnh) {
+        this.duongDanAnh = duongDanAnh;
+    }
 
-	public DanhMuc getDanhMucCha() {
-		return danhMucCha;
-	}
+    public Integer getThuTuHienThi() {
+        return thuTuHienThi;
+    }
 
-	public void setDanhMucCha(DanhMuc danhMucCha) {
-		this.danhMucCha = danhMucCha;
-	}
+    public void setThuTuHienThi(Integer thuTuHienThi) {
+        this.thuTuHienThi = thuTuHienThi;
+    }
 
-	public List<DanhMuc> getDanhMucCon() {
-		return danhMucCon;
-	}
+    public Boolean getTrangThai() {
+        return trangThai;
+    }
 
-	public void setDanhMucCon(List<DanhMuc> danhMucCon) {
-		this.danhMucCon = danhMucCon;
-	}
-
-	public String getDuongDanAnh() {
-		return duongDanAnh;
-	}
-
-	public void setDuongDanAnh(String duongDanAnh) {
-		this.duongDanAnh = duongDanAnh;
-	}
-
-	public Integer getThuTuHienThi() {
-		return thuTuHienThi;
-	}
-
-	public void setThuTuHienThi(Integer thuTuHienThi) {
-		this.thuTuHienThi = thuTuHienThi;
-	}
-
-	public Boolean getTrangThai() {
-		return trangThai;
-	}
-
-	public void setTrangThai(Boolean trangThai) {
-		this.trangThai = trangThai;
-	}
+    public void setTrangThai(Boolean trangThai) {
+        this.trangThai = trangThai;
+    }
 }
