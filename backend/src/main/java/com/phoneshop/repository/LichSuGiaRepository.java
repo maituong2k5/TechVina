@@ -7,12 +7,12 @@ import org.springframework.stereotype.Repository;
 import com.phoneshop.entity.LichSuGia;
 
 @Repository
-public interface LichSuGiaRepository extends JpaRepository<LichSuGiaRepository, Integer>  {
+public interface LichSuGiaRepository extends JpaRepository<LichSuGia, Integer>  {
 	/**
      * Lấy mức giá hiện tại của một phiên bản sản phẩm.
      * Mức giá hiện tại có NgayKetThuc = NULL.
      */
-    Optional<LichSuGiaRepository> findFirstByPhienBan_MaPBAndNgayKetThucIsNull(
+    Optional<LichSuGia> findFirstByPhienBan_MaPBAndNgayKetThucIsNull(
             Integer maPB
     );
 }

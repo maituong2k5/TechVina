@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.phoneshop.entity.SanPham;
+import com.phoneshop.dto.SanPhamNoiBatDTO;
 import com.phoneshop.service.SanPhamService;
 
 /**
@@ -31,8 +31,16 @@ public class SanPhamController {
      *
      * @return danh sách sản phẩm nổi bật
      */
+    /**
+     * API lấy danh sách sản phẩm nổi bật
+     * kèm ảnh, giá bán và cấu hình đại diện.
+     *
+     * GET /api/san-pham/noi-bat
+     *
+     * @return Danh sách sản phẩm nổi bật dạng DTO
+     */
     @GetMapping("/noi-bat")
-    public List<SanPham> laySanPhamNoiBat() {
-        return sanPhamService.laySanPhamNoiBat();
+    public List<SanPhamNoiBatDTO> laySanPhamNoiBat() {
+        return sanPhamService.layDanhSachSanPhamNoiBat();
     }
 }

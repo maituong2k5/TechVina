@@ -1,4 +1,4 @@
-package dto;
+package com.phoneshop.dto;
 
 import java.math.BigDecimal;
 
@@ -18,8 +18,12 @@ public class SanPhamNoiBatDTO {
     // Ảnh đại diện của phiên bản
     private String anhDaiDien;
 
-    // Giá bán hiện tại
-    private BigDecimal giaBan;
+ // Thông tin giá bán
+    
+    private BigDecimal giaGoc;
+    private BigDecimal giaSauGiam;
+    private BigDecimal giaTriGiam;
+    private BigDecimal phanTramGiam;
 
     // Cấu hình dung lượng
     private String ram;
@@ -40,7 +44,11 @@ public class SanPhamNoiBatDTO {
             String tenHang,
             String tenDanhMuc,
             String anhDaiDien,
-            BigDecimal giaBan,
+            
+            BigDecimal giaGoc,
+            BigDecimal giaSauGiam,
+            BigDecimal giaTriGiam,
+            BigDecimal phanTramGiam,
             String ram,
             String rom,
             Long soLuongTon) {
@@ -50,7 +58,13 @@ public class SanPhamNoiBatDTO {
         this.tenHang = tenHang;
         this.tenDanhMuc = tenDanhMuc;
         this.anhDaiDien = anhDaiDien;
-        this.giaBan = giaBan;
+        
+        
+        this.giaGoc = giaGoc;
+        this.giaSauGiam = giaSauGiam;
+        this.giaTriGiam = giaTriGiam;
+        this.phanTramGiam = phanTramGiam;
+        
         this.ram = ram;
         this.rom = rom;
         this.soLuongTon = soLuongTon;
@@ -97,12 +111,37 @@ public class SanPhamNoiBatDTO {
         this.anhDaiDien = anhDaiDien;
     }
 
-    public BigDecimal getGiaBan() {
-        return giaBan;
+  
+    public BigDecimal getGiaGoc() {
+        return giaGoc;
     }
 
-    public void setGiaBan(BigDecimal giaBan) {
-        this.giaBan = giaBan;
+    public void setGiaGoc(BigDecimal giaGoc) {
+        this.giaGoc = giaGoc;
+    }
+
+    public BigDecimal getGiaSauGiam() {
+        return giaSauGiam;
+    }
+
+    public void setGiaSauGiam(BigDecimal giaSauGiam) {
+        this.giaSauGiam = giaSauGiam;
+    }
+
+    public BigDecimal getGiaTriGiam() {
+        return giaTriGiam;
+    }
+
+    public void setGiaTriGiam(BigDecimal giaTriGiam) {
+        this.giaTriGiam = giaTriGiam;
+    }
+
+    public BigDecimal getPhanTramGiam() {
+        return phanTramGiam;
+    }
+
+    public void setPhanTramGiam(BigDecimal phanTramGiam) {
+        this.phanTramGiam = phanTramGiam;
     }
 
     public String getRam() {

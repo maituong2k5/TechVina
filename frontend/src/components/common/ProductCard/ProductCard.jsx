@@ -1,33 +1,107 @@
+import { Card, Button, Badge } from "react-bootstrap";
 import "./ProductCard.scss";
 
-/**
- * Component hiển thị thông tin cơ bản của một sản phẩm.
- *
- * @param {Object} props
- * @param {Object} props.sanPham - Dữ liệu sản phẩm từ Backend
- */
-const ProductCard = ({ sanPham }) => {
-  // Kiểm tra dữ liệu sản phẩm
-  if (!sanPham) {
-    return null;
-  }
+const ProductCard = ({ sanPham, onAddToCart, onBuyNow }) => {
+  // Kiểm tra dữ liệu đầu vào
+  if (!sanPham) return null;
+
+  // Định dạng giá tiền Việt Nam
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("vi-VN").format(price) + "₫";
+  };
+
+  const giaBan = Number(sanPham.giaBan || 0);
+
+  // Giá gốc chỉ xuất hiện khi API cung cấp
+  const giaGoc = Number(sanPham.giaGoc || 0);
+
+  // Tính phần trăm giảm giá
+  const phanTramGiam =
+    giaGoc > giaBan && giaGoc > 0
+      ? Math.round(((giaGoc - giaBan) / giaGoc) * 100)
+      : 0;
+
+  // Kiểm tra số lượng tồn kho
+  const soLuongTon = Number(sanPham.soLuongTon || 0);
+  const conHang = soLuongTon > 0;
+
+  // Đường dẫn đến trang chi tiết sản phẩm
+  const chiTietUrl = `/san-pham/${sanPham.maSP}`;
 
   return (
-    <article className="product-card">
-      {/* Khu vực hình ảnh sản phẩm */}
-      <div className="product-card__image">
-        <img src="/images/products/no-image.webp" alt={sanPham.tenSP} />
+    <Card className="product-card h-100">
+      {/* Khu vực hình ảnh */}
+      <div className="product-card__image-wrapper">
+        {phanTramGiam > 0 && (
+          <Badge bg="danger" className="product-card__discount">
+            -{phanTramGiam}%
+          </Badge>
+        )}
+
+        <Card.Link href={chiTietUrl}>
+          <Card.Img
+            variant="top"
+            src={sanPham.anhDaiDien || "/images/products/no-image.webp"}
+            alt={sanPham.tenSP}
+            className="product-card__image"
+          />
+        </Card.Link>
       </div>
 
       {/* Thông tin sản phẩm */}
-      <div className="product-card__content">
-        <h3 className="product-card__name">{sanPham.tenSP}</h3>
+      <Card.Body className="product-card__body">
+        <Card.Title className="product-card__name">
+          <Card.Link href={chiTietUrl}>
+            <span>{sanPham.tenSP}</span>
+            <span>{sanPham.ram}</span>
+            <span>{sanPham.rom}</span>
+          </Card.Link>
+        </Card.Title>
 
-        <p className="product-card__brand">{sanPham.hang?.tenHang}</p>
+        {/* Giá bán và giá gốc */}
+        <div className="product-card__price">
+          <span className="product-card__current-price">
+            {formatPrice(giaBan)}
+          </span>
 
-        <p className="product-card__category">{sanPham.danhMuc?.tenDanhMuc}</p>
-      </div>
-    </article>
+          {phanTramGiam > 0 && (
+            <span className="product-card__original-price">
+              {formatPrice(giaGoc)}
+            </span>
+          )}
+        </div>
+
+        {/* Trạng thái tồn kho */}
+        <div
+          className={`product-card__stock ${
+            conHang ? "in-stock" : "out-stock"
+          }`}
+        >
+          {conHang ? `Còn ${soLuongTon} sản phẩm` : "Hết hàng"}
+        </div>
+
+        {/* Các nút thao tác */}
+        <div className="product-card__actions">
+          <Button
+            variant="outline-primary"
+            className="product-card__cart-button"
+            disabled={!conHang}
+            onClick={() => onAddToCart?.(sanPham)}
+          >
+            Thêm vào giỏ
+          </Button>
+
+          <Button
+            variant="primary"
+            className="product-card__buy-button"
+            disabled={!conHang}
+            onClick={() => onBuyNow?.(sanPham)}
+          >
+            Mua ngay
+          </Button>
+        </div>
+      </Card.Body>
+    </Card>
   );
 };
 

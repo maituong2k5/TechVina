@@ -1,0 +1,42 @@
+.product-section {
+  padding: 30px 0;
+
+  // Khung trắng bao quanh toàn bộ sản phẩm
+  &__inner {
+    width: 100%;
+    padding: 30px;
+    background-color: #fff;
+    border: 1px solid #eeeaf5;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(35, 20, 70, 0.06);
+  }
+
+  // Tiêu đề khu vực
+  &__title {
+    margin-bottom: 8px;
+    color: #17152b;
+    font-size: 32px;
+    font-weight: 600;
+  }
+
+  &__subtitle {
+    color: #777;
+    font-size: 16px;
+  }
+}
+
+// Responsive cho điện thoại
+@media (max-width: 575.98px) {
+  .product-section {
+    padding: 20px 0;
+
+    &__inner {
+      padding: 16px;
+      border-radius: 14px;
+    }
+
+    &__title {
+      font-size: 24px;
+    }
+  }
+}

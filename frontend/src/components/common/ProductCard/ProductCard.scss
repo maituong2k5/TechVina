@@ -1,57 +1,174 @@
 .product-card {
-  height: 100%;
-  padding: 16px;
-  background-color: #ffffff;
-  border: 1px solid #eeeeee;
-  border-radius: 12px;
+  border: 1px solid #eeeaf5;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(35, 20, 70, 0.06);
   transition: all 0.25s ease;
-  cursor: pointer;
 
-  // Hiệu ứng khi di chuột vào sản phẩm
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    border-color: #dce8f8;
+    box-shadow: 0 10px 25px rgba(35, 20, 70, 0.12);
   }
 
   // Khu vực hình ảnh
-  &__image {
-    width: 100%;
-    height: 190px;
+  &__image-wrapper {
+    position: relative;
+    height: 250px;
+    padding: 25px 15px 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 16px;
+    background-color: #fff;
+  }
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  &:hover &__image {
+    transform: scale(1.04);
+  }
+
+  // Nhãn giảm giá
+  &__discount {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 2;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  // Nội dung sản phẩm
+  &__body {
+    padding: 16px 18px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__brand {
+    margin-bottom: 3px;
+    color: #777;
+    font-size: 14px;
+  }
+
+  &__name {
+    min-height: 44px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+
+    a {
+      color: #17152b;
+      text-decoration: none;
+
+      &:hover {
+        color: #7025d9;
+      }
+    }
+
+    span {
+      margin-right: 5px;
     }
   }
 
-  // Khu vực thông tin
-  &__content {
+  // Giá sản phẩm
+  &__price {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
   }
 
-  // Tên sản phẩm
-  &__name {
-    min-height: 48px;
-    margin: 0;
-    font-size: 16px;
-    font-weight: 700;
-    color: #172b4d;
-    line-height: 1.5;
+  &__current-price {
+    color: #ed2939;
+    font-size: 20px;
+    font-weight: 800;
   }
 
-  // Thương hiệu và danh mục
-  &__brand,
-  &__category {
-    margin: 0;
+  &__original-price {
+    color: #858585;
     font-size: 14px;
-    color: #666666;
+    text-decoration: line-through;
+  }
+
+  // Trạng thái kho
+  &__stock {
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 600;
+
+    &.in-stock {
+      color: #16a36a;
+    }
+
+    &.out-stock {
+      color: #e32636;
+    }
+  }
+
+  // Nút thao tác
+  &__actions {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+
+    .btn {
+      flex: 1;
+      min-height: 42px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+  }
+
+  &__cart-button {
+    color: #7025d9;
+    border-color: #a66bfa;
+
+    &:hover {
+      color: #fff;
+      background-color: #7025d9;
+      border-color: #7025d9;
+    }
+  }
+
+  &__buy-button {
+    background: linear-gradient(135deg, #8746df, #6415d4);
+    border: none;
+
+    &:hover {
+      background: #5410b8;
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 575.98px) {
+  .product-card {
+    &__image-wrapper {
+      height: 210px;
+    }
+
+    &__current-price {
+      font-size: 18px;
+    }
+
+    &__actions {
+      .btn {
+        font-size: 12px;
+      }
+    }
   }
 }
