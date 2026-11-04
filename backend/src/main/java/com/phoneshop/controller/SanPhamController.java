@@ -16,31 +16,23 @@ import com.phoneshop.service.SanPhamService;
 @RequestMapping("/api/san-pham")
 public class SanPhamController {
 
-    // Service xử lý nghiệp vụ sản phẩm
-    private final SanPhamService sanPhamService;
+	// Service xử lý nghiệp vụ sản phẩm
+	private final SanPhamService sanPhamService;
 
-    // Constructor Injection
-    public SanPhamController(SanPhamService sanPhamService) {
-        this.sanPhamService = sanPhamService;
-    }
+	// Constructor Injection
+	public SanPhamController(SanPhamService sanPhamService) {
+		this.sanPhamService = sanPhamService;
+	}
 
-    /**
-     * API lấy danh sách sản phẩm nổi bật.
-     *
-     * GET /api/san-pham/noi-bat
-     *
-     * @return danh sách sản phẩm nổi bật
-     */
-    /**
-     * API lấy danh sách sản phẩm nổi bật
-     * kèm ảnh, giá bán và cấu hình đại diện.
-     *
-     * GET /api/san-pham/noi-bat
-     *
-     * @return Danh sách sản phẩm nổi bật dạng DTO
-     */
-    @GetMapping("/noi-bat")
-    public List<SanPhamNoiBatDTO> laySanPhamNoiBat() {
-        return sanPhamService.layDanhSachSanPhamNoiBat();
-    }
+	/**
+	 * API lấy danh sách sản phẩm nổi bật kèm ảnh, giá bán và cấu hình đại diện.
+	 *
+	 * GET /api/san-pham/noi-bat
+	 *
+	 * @return Danh sách sản phẩm nổi bật dạng DTO
+	 */
+	@GetMapping("/noi-bat")
+	public List<SanPhamNoiBatDTO> laySanPhamNoiBat() {
+		return sanPhamService.layDanhSachSanPhamNoiBat();
+	}
 }

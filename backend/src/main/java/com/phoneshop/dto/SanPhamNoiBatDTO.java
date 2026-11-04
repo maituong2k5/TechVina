@@ -3,169 +3,169 @@ package com.phoneshop.dto;
 import java.math.BigDecimal;
 
 /**
- * DTO chứa thông tin sản phẩm nổi bật
- * dùng để trả dữ liệu cho Frontend.
+ * DTO chứa thông tin sản phẩm nổi bật dùng để trả dữ liệu cho Frontend.
  */
 public class SanPhamNoiBatDTO {
-	  // Thông tin sản phẩm
-    private Integer maSP;
-    private String tenSP;
+	// Thông tin sản phẩm
+	private Integer maSP;
+	private String tenSP;
 
-    // Thông tin thương hiệu và danh mục
-    private String tenHang;
-    private String tenDanhMuc;
+	// Mã phiên bản sản phẩm
+	private Integer maPB;
 
-    // Ảnh đại diện của phiên bản
-    private String anhDaiDien;
+	// Thông tin thương hiệu và danh mục
+	private String tenHang;
+	private String tenDanhMuc;
 
- // Thông tin giá bán
-    
-    private BigDecimal giaGoc;
-    private BigDecimal giaSauGiam;
-    private BigDecimal giaTriGiam;
-    private BigDecimal phanTramGiam;
+	// Ảnh đại diện của phiên bản
+	private String anhDaiDien;
 
-    // Cấu hình dung lượng
-    private String ram;
-    private String rom;
+	// Thông tin giá bán
 
-    // Tổng số lượng tồn kho
-    private Long soLuongTon;
-    
+	private BigDecimal giaGoc;
+	private BigDecimal giaSauGiam;
+	private BigDecimal giaTriGiam;
+	private BigDecimal phanTramGiam;
 
-    // Constructor không tham số
-    public SanPhamNoiBatDTO() {
-    }
+	// Cấu hình dung lượng
+	private String ram;
+	private String rom;
 
-    // Constructor đầy đủ tham số
-    public SanPhamNoiBatDTO(
-            Integer maSP,
-            String tenSP,
-            String tenHang,
-            String tenDanhMuc,
-            String anhDaiDien,
-            
-            BigDecimal giaGoc,
-            BigDecimal giaSauGiam,
-            BigDecimal giaTriGiam,
-            BigDecimal phanTramGiam,
-            String ram,
-            String rom,
-            Long soLuongTon) {
+	// Tổng số lượng tồn kho
+	private Long soLuongTon;
 
-        this.maSP = maSP;
-        this.tenSP = tenSP;
-        this.tenHang = tenHang;
-        this.tenDanhMuc = tenDanhMuc;
-        this.anhDaiDien = anhDaiDien;
-        
-        
-        this.giaGoc = giaGoc;
-        this.giaSauGiam = giaSauGiam;
-        this.giaTriGiam = giaTriGiam;
-        this.phanTramGiam = phanTramGiam;
-        
-        this.ram = ram;
-        this.rom = rom;
-        this.soLuongTon = soLuongTon;
-    }
+	// Constructor không tham số
+	public SanPhamNoiBatDTO() {
+	}
 
-    // Getter và Setter
-    public Integer getMaSP() {
-        return maSP;
-    }
+	// Constructor đầy đủ tham số
+	public SanPhamNoiBatDTO(Integer maSP, Integer maPB, String tenSP, String tenHang, String tenDanhMuc,
+			String anhDaiDien, BigDecimal giaGoc, BigDecimal giaSauGiam, BigDecimal giaTriGiam, BigDecimal phanTramGiam,
+			String ram, String rom, Long soLuongTon) {
 
-    public void setMaSP(Integer maSP) {
-        this.maSP = maSP;
-    }
+		this.maSP = maSP;
+		this.maPB = maPB;
+		this.tenSP = tenSP;
 
-    public String getTenSP() {
-        return tenSP;
-    }
+		this.tenHang = tenHang;
+		this.tenDanhMuc = tenDanhMuc;
+		this.anhDaiDien = anhDaiDien;
 
-    public void setTenSP(String tenSP) {
-        this.tenSP = tenSP;
-    }
+		this.giaGoc = giaGoc;
+		this.giaSauGiam = giaSauGiam;
+		this.giaTriGiam = giaTriGiam;
+		this.phanTramGiam = phanTramGiam;
 
-    public String getTenHang() {
-        return tenHang;
-    }
+		this.ram = ram;
+		this.rom = rom;
+		this.soLuongTon = soLuongTon;
+	}
 
-    public void setTenHang(String tenHang) {
-        this.tenHang = tenHang;
-    }
+	// Getter và Setter
+	public Integer getMaSP() {
+		return maSP;
+	}
 
-    public String getTenDanhMuc() {
-        return tenDanhMuc;
-    }
+	public void setMaSP(Integer maSP) {
+		this.maSP = maSP;
+	}
 
-    public void setTenDanhMuc(String tenDanhMuc) {
-        this.tenDanhMuc = tenDanhMuc;
-    }
+	// Getter: Lấy mã phiên bản sản phẩm
+	public Integer getMaPB() {
+		return maPB;
+	}
 
-    public String getAnhDaiDien() {
-        return anhDaiDien;
-    }
+	// Setter: Gán mã phiên bản sản phẩm
+	public void setMaPB(Integer maPB) {
+		this.maPB = maPB;
+	}
 
-    public void setAnhDaiDien(String anhDaiDien) {
-        this.anhDaiDien = anhDaiDien;
-    }
+	public String getTenSP() {
+		return tenSP;
+	}
 
-  
-    public BigDecimal getGiaGoc() {
-        return giaGoc;
-    }
+	public void setTenSP(String tenSP) {
+		this.tenSP = tenSP;
+	}
 
-    public void setGiaGoc(BigDecimal giaGoc) {
-        this.giaGoc = giaGoc;
-    }
+	public String getTenHang() {
+		return tenHang;
+	}
 
-    public BigDecimal getGiaSauGiam() {
-        return giaSauGiam;
-    }
+	public void setTenHang(String tenHang) {
+		this.tenHang = tenHang;
+	}
 
-    public void setGiaSauGiam(BigDecimal giaSauGiam) {
-        this.giaSauGiam = giaSauGiam;
-    }
+	public String getTenDanhMuc() {
+		return tenDanhMuc;
+	}
 
-    public BigDecimal getGiaTriGiam() {
-        return giaTriGiam;
-    }
+	public void setTenDanhMuc(String tenDanhMuc) {
+		this.tenDanhMuc = tenDanhMuc;
+	}
 
-    public void setGiaTriGiam(BigDecimal giaTriGiam) {
-        this.giaTriGiam = giaTriGiam;
-    }
+	public String getAnhDaiDien() {
+		return anhDaiDien;
+	}
 
-    public BigDecimal getPhanTramGiam() {
-        return phanTramGiam;
-    }
+	public void setAnhDaiDien(String anhDaiDien) {
+		this.anhDaiDien = anhDaiDien;
+	}
 
-    public void setPhanTramGiam(BigDecimal phanTramGiam) {
-        this.phanTramGiam = phanTramGiam;
-    }
+	public BigDecimal getGiaGoc() {
+		return giaGoc;
+	}
 
-    public String getRam() {
-        return ram;
-    }
+	public void setGiaGoc(BigDecimal giaGoc) {
+		this.giaGoc = giaGoc;
+	}
 
-    public void setRam(String ram) {
-        this.ram = ram;
-    }
+	public BigDecimal getGiaSauGiam() {
+		return giaSauGiam;
+	}
 
-    public String getRom() {
-        return rom;
-    }
+	public void setGiaSauGiam(BigDecimal giaSauGiam) {
+		this.giaSauGiam = giaSauGiam;
+	}
 
-    public void setRom(String rom) {
-        this.rom = rom;
-    }
+	public BigDecimal getGiaTriGiam() {
+		return giaTriGiam;
+	}
 
-    public Long getSoLuongTon() {
-        return soLuongTon;
-    }
+	public void setGiaTriGiam(BigDecimal giaTriGiam) {
+		this.giaTriGiam = giaTriGiam;
+	}
 
-    public void setSoLuongTon(Long soLuongTon) {
-        this.soLuongTon = soLuongTon;
-    }
+	public BigDecimal getPhanTramGiam() {
+		return phanTramGiam;
+	}
+
+	public void setPhanTramGiam(BigDecimal phanTramGiam) {
+		this.phanTramGiam = phanTramGiam;
+	}
+
+	public String getRam() {
+		return ram;
+	}
+
+	public void setRam(String ram) {
+		this.ram = ram;
+	}
+
+	public String getRom() {
+		return rom;
+	}
+
+	public void setRom(String rom) {
+		this.rom = rom;
+	}
+
+	public Long getSoLuongTon() {
+		return soLuongTon;
+	}
+
+	public void setSoLuongTon(Long soLuongTon) {
+		this.soLuongTon = soLuongTon;
+	}
 
 }

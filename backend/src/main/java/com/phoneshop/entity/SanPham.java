@@ -69,12 +69,6 @@ public class SanPham {
 	// true: Giá trị mặc định của trạng thái là đang hoạt động
 	@Column(name = "TrangThai", nullable = false)
 	private Boolean trangThai = true;
-	
-	// Đánh dấu sản phẩm có được hiển thị trong mục nổi bật hay không
-	// true: Sản phẩm nổi bật
-	// false: Sản phẩm bình thường
-	@Column(name = "NoiBat", nullable = false)
-	private Boolean noiBat = false;
 
 	// Constructor không tham số
 	// JPA yêu cầu Entity phải có constructor không tham số
@@ -140,14 +134,5 @@ public class SanPham {
 	public void setTrangThai(Boolean trangThai) {
 		this.trangThai = trangThai;
 	}
-	
-	// Getter: Kiểm tra sản phẩm có nổi bật hay không
-	public Boolean getNoiBat() {
-	    return noiBat;
-	}
 
-	// Setter: Thay đổi trạng thái nổi bật của sản phẩm
-	public void setNoiBat(Boolean noiBat) {
-	    this.noiBat = noiBat;
-	}
 }

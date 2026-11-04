@@ -27,8 +27,8 @@ public class DiaChi {
 	private KhachHang khachHang;
 
 	// Thông tin người nhận
-	@Column(name = "TenNguoiNhan", nullable = false, length = 100)
-	private String tenNguoiNhan;
+	@Column(name = "HoTenNguoiNhan", nullable = false, length = 100)
+	private String hoTenNguoiNhan;
 
 	@Column(name = "SoDienThoai", nullable = false, length = 15)
 	private String soDienThoai;
@@ -71,11 +71,11 @@ public class DiaChi {
 	}
 
 	public String getTenNguoiNhan() {
-		return tenNguoiNhan;
+		return hoTenNguoiNhan;
 	}
 
 	public void setTenNguoiNhan(String tenNguoiNhan) {
-		this.tenNguoiNhan = tenNguoiNhan;
+		this.hoTenNguoiNhan = tenNguoiNhan;
 	}
 
 	public String getSoDienThoai() {

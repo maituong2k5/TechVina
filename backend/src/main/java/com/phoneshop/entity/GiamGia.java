@@ -18,94 +18,93 @@ import jakarta.persistence.Table;
 @Table(name = "GiamGia")
 public class GiamGia {
 
-    // Khóa chính của bảng GiamGia
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MaGiamGia")
-    private Integer maGiamGia;
+	// Khóa chính của bảng GiamGia
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "MaGiamGia")
+	private Integer maGiamGia;
 
-    // Tên chương trình giảm giá
-    @Column(name = "TenGiamGia", nullable = false, length = 100)
-    private String tenGiamGia;
+	// Tên chương trình giảm giá
+	@Column(name = "TenGiamGia", nullable = false, length = 100)
+	private String tenGiamGia;
 
-    // Loại giảm giá: FIXED hoặc PERCENT
-    @Column(name = "LoaiGiamGia", nullable = false, length = 20)
-    private String loaiGiamGia;
+	// Loại giảm giá: FIXED hoặc PERCENT
+	@Column(name = "LoaiGiamGia", nullable = false, length = 20)
+	private String loaiGiamGia;
 
-    // Giá trị giảm của chương trình
-    @Column(name = "GiaTriGiam", precision = 15, scale = 2, nullable = false)
-    private BigDecimal giaTriGiam;
+	// Giá trị giảm của chương trình
+	@Column(name = "GiaTriGiam", precision = 15, scale = 2, nullable = false)
+	private BigDecimal giaTriGiam;
 
-    // Ngày bắt đầu chương trình
-    @Column(name = "NgayBatDau", nullable = false)
-    private LocalDateTime ngayBatDau;
+	// Ngày bắt đầu chương trình
+	@Column(name = "NgayBatDau", nullable = false)
+	private LocalDateTime ngayBatDau;
 
-    // Ngày kết thúc chương trình
-    @Column(name = "NgayKetThuc", nullable = false)
-    private LocalDateTime ngayKetThuc;
+	// Ngày kết thúc chương trình
+	@Column(name = "NgayKetThuc", nullable = false)
+	private LocalDateTime ngayKetThuc;
 
-    // Trạng thái chương trình
-    @Column(name = "TrangThai", nullable = false)
-    private Boolean trangThai;
+	@Column(name = "TrangThai", nullable = false, columnDefinition = "TINYINT(1)")
+	private Boolean trangThai;
 
-    // Constructor không tham số
-    public GiamGia() {
-    }
+	// Constructor không tham số
+	public GiamGia() {
+	}
 
-    // Getter và Setter
-    public Integer getMaGiamGia() {
-        return maGiamGia;
-    }
+	// Getter và Setter
+	public Integer getMaGiamGia() {
+		return maGiamGia;
+	}
 
-    public void setMaGiamGia(Integer maGiamGia) {
-        this.maGiamGia = maGiamGia;
-    }
+	public void setMaGiamGia(Integer maGiamGia) {
+		this.maGiamGia = maGiamGia;
+	}
 
-    public String getTenGiamGia() {
-        return tenGiamGia;
-    }
+	public String getTenGiamGia() {
+		return tenGiamGia;
+	}
 
-    public void setTenGiamGia(String tenGiamGia) {
-        this.tenGiamGia = tenGiamGia;
-    }
+	public void setTenGiamGia(String tenGiamGia) {
+		this.tenGiamGia = tenGiamGia;
+	}
 
-    public String getLoaiGiamGia() {
-        return loaiGiamGia;
-    }
+	public String getLoaiGiamGia() {
+		return loaiGiamGia;
+	}
 
-    public void setLoaiGiamGia(String loaiGiamGia) {
-        this.loaiGiamGia = loaiGiamGia;
-    }
+	public void setLoaiGiamGia(String loaiGiamGia) {
+		this.loaiGiamGia = loaiGiamGia;
+	}
 
-    public BigDecimal getGiaTriGiam() {
-        return giaTriGiam;
-    }
+	public BigDecimal getGiaTriGiam() {
+		return giaTriGiam;
+	}
 
-    public void setGiaTriGiam(BigDecimal giaTriGiam) {
-        this.giaTriGiam = giaTriGiam;
-    }
+	public void setGiaTriGiam(BigDecimal giaTriGiam) {
+		this.giaTriGiam = giaTriGiam;
+	}
 
-    public LocalDateTime getNgayBatDau() {
-        return ngayBatDau;
-    }
+	public LocalDateTime getNgayBatDau() {
+		return ngayBatDau;
+	}
 
-    public void setNgayBatDau(LocalDateTime ngayBatDau) {
-        this.ngayBatDau = ngayBatDau;
-    }
+	public void setNgayBatDau(LocalDateTime ngayBatDau) {
+		this.ngayBatDau = ngayBatDau;
+	}
 
-    public LocalDateTime getNgayKetThuc() {
-        return ngayKetThuc;
-    }
+	public LocalDateTime getNgayKetThuc() {
+		return ngayKetThuc;
+	}
 
-    public void setNgayKetThuc(LocalDateTime ngayKetThuc) {
-        this.ngayKetThuc = ngayKetThuc;
-    }
+	public void setNgayKetThuc(LocalDateTime ngayKetThuc) {
+		this.ngayKetThuc = ngayKetThuc;
+	}
 
-    public Boolean getTrangThai() {
-        return trangThai;
-    }
+	public Boolean getTrangThai() {
+		return trangThai;
+	}
 
-    public void setTrangThai(Boolean trangThai) {
-        this.trangThai = trangThai;
-    }
+	public void setTrangThai(Boolean trangThai) {
+		this.trangThai = trangThai;
+	}
 }

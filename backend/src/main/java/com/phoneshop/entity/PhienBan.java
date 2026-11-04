@@ -76,6 +76,10 @@ public class PhienBan {
 	@JoinColumn(name = "MaThiTruong", nullable = false)
 	private ThiTruong thiTruong;
 
+	// Đánh dấu phiên bản có được hiển thị trong danh sách nổi bật hay không
+	@Column(name = "NoiBat", nullable = false)
+	private Boolean noiBat = false;
+
 	// Constructor không tham số
 	// JPA yêu cầu Entity phải có constructor không tham số
 	public PhienBan() {
@@ -139,5 +143,13 @@ public class PhienBan {
 	// Setter: Gán thị trường cho phiên bản
 	public void setThiTruong(ThiTruong thiTruong) {
 		this.thiTruong = thiTruong;
+	}
+
+	public Boolean getNoiBat() {
+		return noiBat;
+	}
+
+	public void setNoiBat(Boolean noiBat) {
+		this.noiBat = noiBat;
 	}
 }
