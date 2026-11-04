@@ -1,4 +1,5 @@
 import { Card, Button, Badge } from "react-bootstrap";
+import { FaShoppingCart } from "react-icons/fa";
 import "./ProductCard.scss";
 
 const ProductCard = ({ sanPham, onAddToCart, onBuyNow }) => {
@@ -10,29 +11,28 @@ const ProductCard = ({ sanPham, onAddToCart, onBuyNow }) => {
     return new Intl.NumberFormat("vi-VN").format(price) + "₫";
   };
 
-  const giaBan = Number(sanPham.giaBan || 0);
-
-  // Giá gốc chỉ xuất hiện khi API cung cấp
+  // Lấy giá gốc và giá sau giảm từ API
   const giaGoc = Number(sanPham.giaGoc || 0);
+  const giaSauGiam = Number(sanPham.giaSauGiam || 0);
 
-  // Tính phần trăm giảm giá
-  const phanTramGiam =
-    giaGoc > giaBan && giaGoc > 0
-      ? Math.round(((giaGoc - giaBan) / giaGoc) * 100)
-      : 0;
+  // Lấy thông tin giảm giá từ Backend
+  const giaTriGiam = Number(sanPham.giaTriGiam || 0);
+  const phanTramGiam = Number(sanPham.phanTramGiam || 0);
+
+  // Kiểm tra sản phẩm có đang được giảm giá hay không
+  const coGiamGia = giaTriGiam > 0 && giaSauGiam < giaGoc;
 
   // Kiểm tra số lượng tồn kho
   const soLuongTon = Number(sanPham.soLuongTon || 0);
   const conHang = soLuongTon > 0;
 
-  // Đường dẫn đến trang chi tiết sản phẩm
-  const chiTietUrl = `/san-pham/${sanPham.maSP}`;
-
+  // Đường dẫn trang chi tiết gồm mã sản phẩm và mã phiên bản
+  const chiTietUrl = `/san-pham/${sanPham.maSP}/${sanPham.maPB}`;
   return (
     <Card className="product-card h-100">
       {/* Khu vực hình ảnh */}
       <div className="product-card__image-wrapper">
-        {phanTramGiam > 0 && (
+        {coGiamGia && (
           <Badge bg="danger" className="product-card__discount">
             -{phanTramGiam}%
           </Badge>
@@ -58,13 +58,13 @@ const ProductCard = ({ sanPham, onAddToCart, onBuyNow }) => {
           </Card.Link>
         </Card.Title>
 
-        {/* Giá bán và giá gốc */}
+        {/* Giá sau giảm và giá gốc */}
         <div className="product-card__price">
           <span className="product-card__current-price">
-            {formatPrice(giaBan)}
+            {formatPrice(giaSauGiam)}
           </span>
 
-          {phanTramGiam > 0 && (
+          {coGiamGia && (
             <span className="product-card__original-price">
               {formatPrice(giaGoc)}
             </span>
@@ -88,7 +88,7 @@ const ProductCard = ({ sanPham, onAddToCart, onBuyNow }) => {
             disabled={!conHang}
             onClick={() => onAddToCart?.(sanPham)}
           >
-            Thêm vào giỏ
+            <FaShoppingCart />
           </Button>
 
           <Button

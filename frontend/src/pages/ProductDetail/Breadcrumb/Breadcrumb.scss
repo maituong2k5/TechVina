@@ -1,0 +1,54 @@
+/* ==============================
+   BREADCRUMB
+================================ */
+
+.breadcrumb {
+  margin: 20px 0;
+  font-size: 14px;
+}
+
+/* Danh sách đường dẫn */
+.breadcrumb__list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+/* Từng phần tử */
+.breadcrumb__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #6b7280;
+}
+
+/* Liên kết điều hướng */
+.breadcrumb__item a {
+  color: #64748b;
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+/* Hiệu ứng khi di chuột */
+.breadcrumb__item a:hover {
+  color: #7c3aed;
+}
+
+/* Dấu phân cách */
+.breadcrumb__separator {
+  color: #9ca3af;
+}
+
+/* Trang hiện tại */
+.breadcrumb__current {
+  color: #172554;
+  font-weight: 600;
+}

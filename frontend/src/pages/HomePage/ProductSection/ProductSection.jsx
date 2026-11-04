@@ -61,7 +61,7 @@ const ProductSection = () => {
         {!isLoading && !error && (
           <Row className="g-4">
             {sanPhamList.map((sanPham) => (
-              <Col key={sanPham.maSP} xs={12} sm={6} md={4} lg={3}>
+              <Col key={sanPham.maSP} xs={12} sm={6} md={6} lg={3} xl={3}>
                 <ProductCard sanPham={sanPham} />
               </Col>
             ))}
