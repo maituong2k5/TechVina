@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
  * từng nhóm thông số.
  */
 @Entity
-@Table(name = "ThongSoKyThuat")
+@Table(name = "thongsokythuat")
 public class ThongSoKyThuat {
 
 	// Khóa chính, tự động tăng

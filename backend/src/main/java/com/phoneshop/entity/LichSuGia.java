@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 @Entity
 
 //Ánh xạ class LichSuGia với bảng LichSuGia trong database
-@Table(name = "LichSuGia")
+@Table(name = "lichsugia")
 public class LichSuGia {
 	// Khóa chính của bảng
 	@Id

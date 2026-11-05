@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import danhMucService from "../../../services/danhMucService";
+import danhMucService from "../../../services/categoryService";
 import "./CategorySection.scss";
 
 /**

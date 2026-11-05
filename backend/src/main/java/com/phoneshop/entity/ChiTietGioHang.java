@@ -8,13 +8,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * Entity ánh xạ với bảng ChiTietGioHang. Lưu các phiên bản sản phẩm và số lượng
  * trong giỏ hàng.
  */
 @Entity
-@Table(name = "ChiTietGioHang")
+@Table(name = "chitietgiohang", uniqueConstraints = {
+		@UniqueConstraint(name = "UQ_ChiTietGioHang_GioHang_PhienBan", columnNames = { "MaGH", "MaPB" }) })
 public class ChiTietGioHang {
 	// Khóa chính của chi tiết giỏ hàng
 	@Id

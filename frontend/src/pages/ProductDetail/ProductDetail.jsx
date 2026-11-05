@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { getThongSoKyThuat } from "../../services/thongSoKyThuatService";
+import { getThongSoKyThuat } from "../../services/technicalSpecificationsService";
+import { getDanhSachPhienBan } from "../../services/productVersionService";
+import { getThongTinSanPham } from "../../services/productInformationService";
+import { getDanhSachAnh } from "../../services/productImageService";
 import Breadcrumb from "./Breadcrumb/Breadcrumb";
+
 // Component thư viện hình ảnh sản phẩm
 import ProductGallery from "./ProductDetailMain/ProductGallery/ProductGallery";
+import ProductInformation from "./ProductDetailMain/ProductInformation/ProductInformation";
+import TechnicalSpecifications from "./ProductDetailMain/TechnicalSpecifications/TechnicalSpecifications";
 
 import "./ProductDetail.scss";
 
@@ -25,6 +31,20 @@ const ProductDetail = () => {
 
   // Danh sách nhóm thông số kỹ thuật
   const [danhSachThongSo, setDanhSachThongSo] = useState([]);
+  // Danh sách phiên bản kèm giá và tồn kho.
+  const [danhSachPhienBan, setDanhSachPhienBan] = useState([]);
+
+  // Lưu danh sách ảnh theo từng mã phiên bản.
+  const [anhTheoPhienBan, setAnhTheoPhienBan] = useState({});
+
+  // Trạng thái tải danh sách ảnh của các phiên bản.
+  const [loadingAnhTheoPhienBan, setLoadingAnhTheoPhienBan] = useState(false);
+
+  // Lưu mã phiên bản sản phẩm đang được chọn.
+  const [selectedMaPB, setSelectedMaPB] = useState(null);
+
+  // Lưu thông tin cơ bản của sản phẩm.
+  const [thongTinSanPham, setThongTinSanPham] = useState(null);
 
   // Trạng thái tải dữ liệu
   const [loading, setLoading] = useState(true);
@@ -56,53 +76,144 @@ const ProductDetail = () => {
     }
   }, [maSP]);
 
+  /**
+   * Gọi API lấy danh sách phiên bản khi mã sản phẩm thay đổi.
+   */
+  useEffect(() => {
+    const fetchDanhSachPhienBan = async () => {
+      try {
+        const data = await getDanhSachPhienBan(maSP);
+
+        setDanhSachPhienBan(data);
+      } catch (err) {
+        console.error("Không thể tải danh sách phiên bản:", err);
+      }
+    };
+
+    if (maSP) {
+      fetchDanhSachPhienBan();
+    }
+  }, [maSP]);
+
+  /**
+   * Lấy danh sách ảnh của tất cả phiên bản sản phẩm.
+   * Mỗi phiên bản được lưu ảnh theo mã MaPB.
+   */
+  useEffect(() => {
+    if (danhSachPhienBan.length === 0) {
+      setAnhTheoPhienBan({});
+      setLoadingAnhTheoPhienBan(false);
+      return;
+    }
+
+    let isMounted = true;
+
+    const fetchAnhTheoPhienBan = async () => {
+      setLoadingAnhTheoPhienBan(true);
+
+      try {
+        const ketQua = await Promise.all(
+          danhSachPhienBan.map(async (phienBan) => {
+            const danhSachAnh = await getDanhSachAnh(phienBan.maPB);
+
+            return [phienBan.maPB, danhSachAnh.map((anh) => anh.duongDanAnh)];
+          }),
+        );
+
+        if (isMounted) {
+          setAnhTheoPhienBan(Object.fromEntries(ketQua));
+        }
+      } catch (error) {
+        console.error("Không thể tải ảnh các phiên bản:", error);
+      } finally {
+        if (isMounted) {
+          setLoadingAnhTheoPhienBan(false);
+        }
+      }
+    };
+
+    fetchAnhTheoPhienBan();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [danhSachPhienBan]);
+
+  /**
+   * Lấy thông tin cơ bản khi mã sản phẩm thay đổi.
+   */
+  useEffect(() => {
+    const fetchThongTinSanPham = async () => {
+      try {
+        const data = await getThongTinSanPham(maSP);
+
+        setThongTinSanPham(data);
+      } catch (error) {
+        console.error("Không thể tải thông tin sản phẩm:", error);
+      }
+    };
+
+    if (maSP) {
+      fetchThongTinSanPham();
+    }
+  }, [maSP]);
+
+  /**
+   * Tự động chọn phiên bản đầu tiên khi tải danh sách phiên bản.
+   */
+  useEffect(() => {
+    if (danhSachPhienBan.length > 0) {
+      const maPBHopLe = danhSachPhienBan.some(
+        (phienBan) => phienBan.maPB === selectedMaPB,
+      );
+
+      // Chỉ chọn phiên bản đầu tiên nếu chưa có phiên bản hợp lệ.
+      if (!maPBHopLe) {
+        setSelectedMaPB(danhSachPhienBan[0].maPB);
+      }
+    }
+  }, [danhSachPhienBan, selectedMaPB]);
+
   return (
     <div className="product-detail">
       <div className="container">
         {/* Đường dẫn điều hướng */}
         <Breadcrumb items={breadcrumbItems} />
 
-        {/* Khu vực hình ảnh sản phẩm */}
-        <ProductGallery />
-        <h2>Chi tiết sản phẩm</h2>
+        {/* Khu vực chính: hình ảnh bên trái, thông tin bên phải */}
+        <div className="product-detail-main">
+          <div className="product-detail-main__gallery">
+            <ProductGallery
+              selectedMaPB={selectedMaPB}
+              danhSachAnh={anhTheoPhienBan[selectedMaPB] || []}
+              loadingAnh={loadingAnhTheoPhienBan}
+            />
+          </div>
 
-        <p>Mã sản phẩm: {maSP}</p>
-        <p>Mã phiên bản: {maPB}</p>
+          <div className="product-detail-main__information">
+            <ProductInformation
+              danhSachPhienBan={danhSachPhienBan}
+              thongTinSanPham={thongTinSanPham}
+              selectedMaPB={selectedMaPB}
+              setSelectedMaPB={setSelectedMaPB}
+              anhTheoPhienBan={anhTheoPhienBan}
+            />
+          </div>
+        </div>
 
         <section className="technical-specifications">
-          <h3>Thông số kỹ thuật</h3>
-
           {/* Trạng thái đang tải */}
           {loading && <p>Đang tải thông số kỹ thuật...</p>}
 
           {/* Trạng thái lỗi */}
           {!loading && error && <p>{error}</p>}
 
-          {/* Hiển thị danh sách thông số */}
-          {!loading &&
-            !error &&
-            danhSachThongSo.map((nhom, index) => (
-              <div
-                className="specification-group"
-                key={`${nhom.tenNhom}-${index}`}
-              >
-                <h4>{nhom.tenNhom}</h4>
+          {/* Hiển thị thông số kỹ thuật */}
+          {!loading && !error && danhSachThongSo.length > 0 && (
+            <TechnicalSpecifications danhSachThongSo={danhSachThongSo} />
+          )}
 
-                <div className="specification-list">
-                  {nhom.danhSachThongSo.map((thongSo, itemIndex) => (
-                    <div
-                      className="specification-item"
-                      key={`${thongSo.tenThongSo}-${itemIndex}`}
-                    >
-                      <span>{thongSo.tenThongSo}</span>
-                      <span>{thongSo.giaTri}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-
-          {/* Trường hợp sản phẩm chưa có thông số */}
+          {/* Trường hợp chưa có thông số */}
           {!loading && !error && danhSachThongSo.length === 0 && (
             <p>Chưa có thông số kỹ thuật.</p>
           )}

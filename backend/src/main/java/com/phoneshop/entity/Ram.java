@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 @Entity
 
 //@Table(name = "Ram"): Chỉ định Entity Ram tương ứng với bảng "Ram" trong database
-@Table(name = "Ram")
+@Table(name = "ram")
 public class Ram {
 
 	// @Id: Xác định đây là khóa chính (Primary Key) của bảng

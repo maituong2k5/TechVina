@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 @Entity
 
 // @Table: Xác định Entity này tương ứng với bảng "Anh" trong database
-@Table(name = "Anh")
+@Table(name = "anh")
 public class Anh {
 
 	// @Id: Xác định maAnh là khóa chính (Primary Key)

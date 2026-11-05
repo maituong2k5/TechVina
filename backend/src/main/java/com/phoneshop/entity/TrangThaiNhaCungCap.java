@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 @Entity
 
 //@Table: Xác định Entity này tương ứng với bảng "TrangThaiNhaCungCap"
-@Table(name = "TrangThaiNhaCungCap")
+@Table(name = "trangthainhacungcap")
 public class TrangThaiNhaCungCap {
 
 	// @Id: Xác định maTrangThai là khóa chính (Primary Key)

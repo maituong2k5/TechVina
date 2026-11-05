@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import sanPhamService from "../../../services/sanPhamService";
+import sanPhamService from "../../../services/productService";
 import ProductCard from "../../../components/common/ProductCard/ProductCard";
 import "./ProductSection.scss";
 

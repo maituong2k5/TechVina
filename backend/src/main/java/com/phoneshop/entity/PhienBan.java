@@ -9,13 +9,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 // @Entity: Đánh dấu class PhienBan là một Entity của JPA
 // JPA sẽ quản lý các đối tượng PhienBan và ánh xạ chúng với database
 @Entity
 
 // @Table: Xác định Entity này tương ứng với bảng "PhienBan" trong database
-@Table(name = "PhienBan")
+@Table(name = "phienban", uniqueConstraints = {
+		@UniqueConstraint(name = "UQ_PhienBan_SanPham_CauHinhDungLuong_MauSac_ThiTruong", columnNames = { "MaSP",
+				"MaCHDL", "MaMauSac", "MaThiTruong" }) })
 public class PhienBan {
 
 	// @Id: Xác định maPB là khóa chính (Primary Key)

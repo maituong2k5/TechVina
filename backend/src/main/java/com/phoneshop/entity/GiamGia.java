@@ -10,12 +10,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * Entity quản lý chương trình giảm giá.
  */
 @Entity
-@Table(name = "GiamGia")
+@Table(name = "giamgia", uniqueConstraints = {
+		@UniqueConstraint(name = "uk_giamgia_phienban", columnNames = { "MaGiamGia", "MaPB" }) })
 public class GiamGia {
 
 	// Khóa chính của bảng GiamGia
@@ -45,7 +47,7 @@ public class GiamGia {
 	private LocalDateTime ngayKetThuc;
 
 	@Column(name = "TrangThai", nullable = false, columnDefinition = "TINYINT(1)")
-	private Boolean trangThai;
+	private Boolean trangThai = true;
 
 	// Constructor không tham số
 	public GiamGia() {

@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 @Entity
 
 // @Table: Xác định Entity Hang tương ứng với bảng "Hang" trong database
-@Table(name = "Hang")
+@Table(name = "hang")
 public class Hang {
 
 	// @Id: Xác định maHang là khóa chính (Primary Key)

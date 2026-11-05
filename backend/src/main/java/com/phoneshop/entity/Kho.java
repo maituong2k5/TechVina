@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 @Entity
 
 //Ánh xạ class Kho với bảng Kho trong database
-@Table(name = "Kho")
+@Table(name = "kho")
 public class Kho {
 
 	// Khóa chính của bảng Kho

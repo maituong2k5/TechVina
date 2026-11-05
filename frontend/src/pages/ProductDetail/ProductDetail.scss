@@ -1,0 +1,68 @@
+/* ========================================
+   PRODUCT DETAIL MAIN
+   Bố cục thư viện ảnh và thông tin sản phẩm
+======================================== */
+
+.product-detail-main {
+  display: grid;
+
+  // Chia hai cột có chiều rộng bằng nhau.
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+  gap: 28px;
+
+  // Kéo giãn hai cột bằng chiều cao của cột cao hơn.
+  align-items: stretch;
+
+  margin-top: 20px;
+
+  &__gallery,
+  &__information {
+    min-width: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* ========================================
+   TECHNICAL SPECIFICATIONS
+   Bố cục Masonry cho các nhóm thông số
+======================================== */
+
+.technical-specifications {
+  margin-top: 32px;
+
+  &__title {
+    margin-bottom: 20px;
+    color: #172b4d;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  // Hiển thị các nhóm thông số theo chiều dọc
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  // Mỗi nhóm thông số là một khối độc lập.
+  .specification-group {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+
+    // Tránh một nhóm bị chia đôi giữa hai cột.
+    break-inside: avoid;
+    vertical-align: top;
+  }
+}
+
+/* Responsive: chuyển thành 1 cột trên điện thoại */
+@media (max-width: 768px) {
+  .technical-specifications {
+    &__grid {
+      column-count: 1;
+    }
+  }
+}

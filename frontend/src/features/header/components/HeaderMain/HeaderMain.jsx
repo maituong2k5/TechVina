@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import { useCart } from "../../../../context/CartContext";
+
 import {
   FaSearch,
   FaUser,
@@ -11,6 +13,8 @@ import {
 import "./HeaderMain.scss";
 
 const HeaderMain = () => {
+  // Lấy tổng số lượng sản phẩm trong giỏ hàng.
+  const { cartCount } = useCart();
   return (
     <div className="header-main">
       <Container>
@@ -51,7 +55,17 @@ const HeaderMain = () => {
             </Link>
 
             <Link to="/cart" className="header-main__action">
-              <FaShoppingCart />
+              <span className="header-main__cart-icon">
+                <FaShoppingCart />
+
+                {/* Chỉ hiển thị badge khi giỏ hàng có sản phẩm */}
+                {cartCount > 0 && (
+                  <span className="header-main__cart-count">
+                    {cartCount > 99 ? "99+" : cartCount}
+                  </span>
+                )}
+              </span>
+
               <span>Giỏ hàng</span>
             </Link>
           </div>

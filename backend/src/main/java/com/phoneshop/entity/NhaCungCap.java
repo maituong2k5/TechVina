@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 @Entity
 
 // Ánh xạ class NhaCungCap với bảng NhaCungCap trong database
-@Table(name = "NhaCungCap")
+@Table(name = "nhacungcap")
 public class NhaCungCap {
 
 	// Khóa chính của bảng

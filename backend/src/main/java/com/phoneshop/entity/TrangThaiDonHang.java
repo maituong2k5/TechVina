@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
  * trong quá trình xử lý đơn hàng.
  */
 @Entity
-@Table(name = "TrangThaiDonHang")
+@Table(name = "trangthaidonhang")
 public class TrangThaiDonHang {
 	// Khóa chính của trạng thái đơn hàng
 	@Id

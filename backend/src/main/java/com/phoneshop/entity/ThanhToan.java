@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
  * Entity ánh xạ với bảng ThanhToan. Lưu thông tin thanh toán của một đơn hàng.
  */
 @Entity
-@Table(name = "ThanhToan")
+@Table(name = "thanhtoan")
 public class ThanhToan {
 	// Khóa chính của thanh toán
 	@Id

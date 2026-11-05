@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
  * Entity ánh xạ với bảng DiaChi. Lưu các địa chỉ giao hàng của khách hàng.
  */
 @Entity
-@Table(name = "DiaChi")
+@Table(name = "diachi")
 public class DiaChi {
 	// Khóa chính của địa chỉ
 	@Id
@@ -70,11 +70,11 @@ public class DiaChi {
 		this.khachHang = khachHang;
 	}
 
-	public String getTenNguoiNhan() {
+	public String getHoTenNguoiNhan() {
 		return hoTenNguoiNhan;
 	}
 
-	public void setTenNguoiNhan(String tenNguoiNhan) {
+	public void setHoTenNguoiNhan(String tenNguoiNhan) {
 		this.hoTenNguoiNhan = tenNguoiNhan;
 	}
 

@@ -4,9 +4,12 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -14,7 +17,7 @@ import jakarta.persistence.Table;
  * của khách hàng.
  */
 @Entity
-@Table(name = "KhachHang")
+@Table(name = "khachhang")
 public class KhachHang {
 	// Khóa chính của khách hàng
 	@Id
@@ -45,7 +48,12 @@ public class KhachHang {
 	private String gioiTinh;
 
 	@Column(name = "TrangThai", nullable = false)
-	private Boolean trangThai;
+	private Boolean trangThai = true;
+
+	// Nhiều khách hàng có thể cùng một vai trò CUSTOMER.
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "MaVaiTro", nullable = false)
+	private VaiTro vaiTro;
 
 	// Constructor rỗng để JPA/Hibernate khởi tạo Entity
 	public KhachHang() {
@@ -114,5 +122,13 @@ public class KhachHang {
 
 	public void setTrangThai(Boolean trangThai) {
 		this.trangThai = trangThai;
+	}
+
+	public VaiTro getVaiTro() {
+		return vaiTro;
+	}
+
+	public void setVaiTro(VaiTro vaiTro) {
+		this.vaiTro = vaiTro;
 	}
 }

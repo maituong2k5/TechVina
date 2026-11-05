@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
  * phẩm.
  */
 @Entity
-@Table(name = "NhomThongSo")
+@Table(name = "nhomthongso")
 public class NhomThongSo {
 
 	// Khóa chính, tự động tăng

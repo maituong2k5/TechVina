@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 @Entity
 
 // @Table: Xác định Entity này tương ứng với bảng "SanPham" trong database
-@Table(name = "SanPham")
+@Table(name = "sanpham")
 
 public class SanPham {
 
@@ -40,8 +40,7 @@ public class SanPham {
 	// Ánh xạ thuộc tính maModel với cột MaModel trong database
 	// length = 30: Độ dài tối đa của mã model là 30 ký tự
 	// nullable = false: Bắt buộc phải có mã model
-	// unique = true: Không cho phép hai sản phẩm có cùng mã model
-	@Column(name = "MaModel", length = 30, nullable = false, unique = true)
+	@Column(name = "MaModel", length = 30, nullable = false)
 	private String maModel;
 
 	// @ManyToOne: Thiết lập quan hệ nhiều - một với Entity DanhMuc
@@ -63,6 +62,9 @@ public class SanPham {
 	// nullable = false: Sản phẩm bắt buộc phải có hãng
 	@JoinColumn(name = "MaHang", nullable = false)
 	private Hang hang;
+
+	@Column(name = "MoTa", columnDefinition = "TEXT")
+	private String moTa;
 
 	// Ánh xạ thuộc tính trangThai với cột TrangThai trong database
 	// nullable = false: Trạng thái không được phép NULL
@@ -123,6 +125,16 @@ public class SanPham {
 	// Setter: Gán hãng cho sản phẩm
 	public void setHang(Hang hang) {
 		this.hang = hang;
+	}
+
+	// Getter: Lấy mô tả sản phẩm
+	public String getMoTa() {
+		return moTa;
+	}
+
+	// Setter: Cập nhật mô tả sản phẩm
+	public void setMoTa(String moTa) {
+		this.moTa = moTa;
 	}
 
 	// Getter: Lấy trạng thái của sản phẩm

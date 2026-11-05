@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 @Entity
 
 // @Table: Xác định Entity này tương ứng với bảng "CauHinhDungLuong"
-@Table(name = "CauHinhDungLuong")
+@Table(name = "cauhinhdungluong")
 public class CauHinhDungLuong {
 
 	// @Id: Xác định maCHDL là khóa chính của bảng

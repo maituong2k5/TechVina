@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
  * phiếu nhập.
  */
 @Entity
-@Table(name = "TrangThaiPhieuNhap")
+@Table(name = "trangthaiphieunhap")
 public class TrangThaiPhieuNhap {
 	// Khóa chính của trạng thái phiếu nhập
 	@Id

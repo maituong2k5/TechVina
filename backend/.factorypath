@@ -65,4 +65,5 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/jakarta/activation/jakarta.activation-api/2.1.4/jakarta.activation-api-2.1.4.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-core/6.2.11/spring-core-6.2.11.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-jcl/6.2.11/spring-jcl-6.2.11.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/security/spring-security-crypto/6.5.5/spring-security-crypto-6.5.5.jar" enabled="true" runInBatchMode="false"/>
 </factorypath>

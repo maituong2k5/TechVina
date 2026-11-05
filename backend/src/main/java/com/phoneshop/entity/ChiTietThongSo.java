@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
  * từng sản phẩm.
  */
 @Entity
-@Table(name = "ChiTietThongSo")
+@Table(name = "chitietthongso")
 public class ChiTietThongSo {
 
 	// Khóa chính, tự động tăng

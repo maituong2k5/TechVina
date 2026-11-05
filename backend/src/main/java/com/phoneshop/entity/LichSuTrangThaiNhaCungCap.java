@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
  * đổi trạng thái của nhà cung cấp.
  */
 @Entity
-@Table(name = "LichSuTrangThaiNhaCungCap")
+@Table(name = "lichsutrangthainhacungcap")
 public class LichSuTrangThaiNhaCungCap {
 	// Khóa chính của lịch sử thay đổi trạng thái
 	@Id

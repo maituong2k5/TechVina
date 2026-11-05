@@ -4,9 +4,12 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -14,7 +17,7 @@ import jakarta.persistence.Table;
  * của nhân viên.
  */
 @Entity
-@Table(name = "NhanVien")
+@Table(name = "nhanvien")
 public class NhanVien {
 	// Khóa chính của nhân viên
 	@Id
@@ -45,7 +48,12 @@ public class NhanVien {
 
 	// Trạng thái hoạt động của nhân viên
 	@Column(name = "TrangThai", nullable = false)
-	private Boolean trangThai;
+	private Boolean trangThai = true;
+
+	// Quan hệ nhiều nhân viên có thể cùng một vai trò STAFF hoặc ADMIN.
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "MaVaiTro", nullable = false)
+	private VaiTro vaiTro;
 
 	// Constructor rỗng để JPA/Hibernate khởi tạo Entity
 	public NhanVien() {
@@ -114,5 +122,15 @@ public class NhanVien {
 
 	public void setTrangThai(Boolean trangThai) {
 		this.trangThai = trangThai;
+	}
+
+	// Lấy vai trò của nhân viên.
+	public VaiTro getVaiTro() {
+		return vaiTro;
+	}
+
+	// Thiết lập vai trò cho nhân viên.
+	public void setVaiTro(VaiTro vaiTro) {
+		this.vaiTro = vaiTro;
 	}
 }

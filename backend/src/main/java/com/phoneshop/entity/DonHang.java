@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
  * nhận tại thời điểm khách hàng đặt hàng.
  */
 @Entity
-@Table(name = "DonHang")
+@Table(name = "donhang")
 public class DonHang {
 	// Khóa chính của đơn hàng
 	@Id

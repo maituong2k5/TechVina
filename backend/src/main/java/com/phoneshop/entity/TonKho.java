@@ -9,10 +9,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 // Đánh dấu đây là một Entity của JPA
 @Entity
-@Table(name = "TonKho")
+@Table(name = "tonkho", uniqueConstraints = {
+		@UniqueConstraint(name = "UQ_TonKho_Kho_PhienBan", columnNames = { "MaKho", "MaPB" }) })
 public class TonKho {
 
 	// Khóa chính của bảng TonKho

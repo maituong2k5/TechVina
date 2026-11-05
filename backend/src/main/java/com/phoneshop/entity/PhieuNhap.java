@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
  * cung cấp vào kho.
  */
 @Entity
-@Table(name = "PhieuNhap")
+@Table(name = "phieunhap")
 public class PhieuNhap {
 	// Khóa chính của phiếu nhập
 	@Id

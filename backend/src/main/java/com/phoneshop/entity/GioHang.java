@@ -8,14 +8,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 /**
  * Entity ánh xạ với bảng GioHang. Lưu thông tin giỏ hàng của khách hàng.
  */
 @Entity
-@Table(name = "GioHang")
+@Table(name = "giohang")
 public class GioHang {
 	// Khóa chính của giỏ hàng
 	@Id
@@ -24,7 +24,7 @@ public class GioHang {
 	private Integer maGH;
 
 	// Khách hàng sở hữu giỏ hàng
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "MaKH", nullable = false, unique = true)
 	private KhachHang khachHang;
 
