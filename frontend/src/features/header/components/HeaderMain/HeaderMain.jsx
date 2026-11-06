@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { useCart } from "../../../../context/CartContext";
+import { useAuth } from "../../../../context/AuthContext";
 
 import {
   FaSearch,
@@ -15,6 +16,9 @@ import "./HeaderMain.scss";
 const HeaderMain = () => {
   // Lấy tổng số lượng sản phẩm trong giỏ hàng.
   const { cartCount } = useCart();
+
+  // Lấy trạng thái đăng nhập và thông tin tài khoản.
+  const { user, isAuthenticated } = useAuth();
   return (
     <div className="header-main">
       <Container>
@@ -49,10 +53,18 @@ const HeaderMain = () => {
               <FaChevronDown className="ic-down" />
             </button>
 
-            <Link to="/account" className="header-main__action">
-              <FaUser />
-              <span>Tài khoản</span>
-            </Link>
+            {/* Hiển thị tài khoản theo trạng thái đăng nhập */}
+            {isAuthenticated && user ? (
+              <Link to="/account" className="header-main__action">
+                <FaUser />
+                <span>{user.hoTen}</span>
+              </Link>
+            ) : (
+              <Link to="/login" className="header-main__action">
+                <FaUser />
+                <span>Tài khoản</span>
+              </Link>
+            )}
 
             <Link to="/cart" className="header-main__action">
               <span className="header-main__cart-icon">

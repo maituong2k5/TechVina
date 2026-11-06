@@ -1,15 +1,60 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import authService from "../../../services/authService";
+import { useAuth } from "../../../context/AuthContext";
 import "./../styles/Auth.scss";
 
 /**
  * Component hiển thị biểu mẫu đăng nhập.
  */
 const LoginForm = () => {
+  const navigate = useNavigate();
+  const { dangNhap } = useAuth();
+
+  // Quản lý dữ liệu nhập từ người dùng.
+  const [email, setEmail] = useState("");
+  const [matKhau, setMatKhau] = useState("");
+
+  // Quản lý trạng thái xử lý đăng nhập.
+  const [dangXuLy, setDangXuLy] = useState(false);
+  const [loiDangNhap, setLoiDangNhap] = useState("");
+
   /**
-   * Tạm ngăn hành vi GET mặc định của trình duyệt.
-   * Bước tiếp theo sẽ thay bằng xử lý đăng nhập qua API POST.
+   * Gửi thông tin đăng nhập đến Backend.
    */
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    setLoiDangNhap("");
+    setDangXuLy(true);
+
+    try {
+      // Gọi API đăng nhập.
+      const response = await authService.dangNhap(email, matKhau);
+
+      // Lưu Access Token để sử dụng cho các API cần xác thực.
+      if (!response.accessToken) {
+        throw new Error("Backend không trả về Access Token.");
+      }
+
+      dangNhap(response);
+
+      // Điều hướng theo vai trò tài khoản.
+      if (response.vaiTro === "ADMIN") {
+        navigate("/admin");
+      } else if (response.vaiTro === "STAFF") {
+        navigate("/staff");
+      } else {
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Lỗi đăng nhập:", error);
+
+      setLoiDangNhap(error.message || "Đăng nhập thất bại. Vui lòng thử lại.");
+    } finally {
+      setDangXuLy(false);
+    }
   };
 
   return (
@@ -29,7 +74,10 @@ const LoginForm = () => {
             type="email"
             id="email"
             name="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
             placeholder="Nhập email của bạn"
+            autoComplete="username"
             required
           />
         </div>
@@ -42,7 +90,10 @@ const LoginForm = () => {
             type="password"
             id="password"
             name="password"
+            value={matKhau}
+            onChange={(event) => setMatKhau(event.target.value)}
             placeholder="Nhập mật khẩu"
+            autoComplete="current-password"
             required
           />
         </div>
@@ -57,8 +108,15 @@ const LoginForm = () => {
           <a href="/quen-mat-khau">Quên mật khẩu?</a>
         </div>
 
-        <button type="submit" className="auth-form__submit">
-          Đăng nhập
+        {/* Hiển thị lỗi đăng nhập */}
+        {loiDangNhap && (
+          <p className="auth-form__error" role="alert">
+            {loiDangNhap}
+          </p>
+        )}
+
+        <button type="submit" className="auth-form__submit" disabled={dangXuLy}>
+          {dangXuLy ? "Đang đăng nhập..." : "Đăng nhập"}
         </button>
       </form>
 

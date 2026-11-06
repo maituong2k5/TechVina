@@ -1,0 +1,210 @@
+/* ==============================
+   STAFF LAYOUT
+================================ */
+
+.staff-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f7fb;
+  color: #1e293b;
+  font-family: inherit;
+}
+
+/* ==============================
+   SIDEBAR
+================================ */
+
+.staff-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  padding: 24px 16px;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e7eb;
+
+  &__brand {
+    padding: 0 12px 28px;
+    border-bottom: 1px solid #e5e7eb;
+
+    h2 {
+      margin: 0;
+      color: #2563eb;
+      font-size: 25px;
+      font-weight: 700;
+    }
+
+    span {
+      display: block;
+      margin-top: 5px;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+  }
+
+  &__nav {
+    margin-top: 28px;
+  }
+
+  &__heading {
+    margin: 0 12px 12px;
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  &__link {
+    display: block;
+    margin-bottom: 6px;
+    padding: 12px;
+    border-radius: 8px;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: #2563eb;
+      background-color: #eff6ff;
+    }
+
+    &.active {
+      color: #2563eb;
+      background-color: #eff6ff;
+      font-weight: 600;
+    }
+  }
+}
+
+/* ==============================
+   MAIN CONTENT
+================================ */
+
+.staff-main {
+  flex: 1;
+  min-width: 0;
+  margin-left: 250px;
+}
+
+/* ==============================
+   HEADER
+================================ */
+
+.staff-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 85px;
+  padding: 16px 32px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+
+  h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 5px 0 0;
+    color: #94a3b8;
+    font-size: 13px;
+  }
+
+  &__account {
+    color: #475569;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+
+/* ==============================
+   PAGE CONTENT
+================================ */
+
+.staff-content {
+  min-height: calc(100vh - 85px);
+  padding: 32px;
+}
+
+/* ==============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+  .staff-sidebar {
+    width: 200px;
+  }
+
+  .staff-main {
+    margin-left: 200px;
+  }
+
+  .staff-header {
+    padding: 16px 20px;
+  }
+
+  .staff-content {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .staff-sidebar {
+    width: 72px;
+    padding: 20px 8px;
+
+    &__brand {
+      padding: 0 4px 20px;
+
+      h2 {
+        font-size: 14px;
+      }
+
+      span {
+        display: none;
+      }
+    }
+
+    &__heading {
+      display: none;
+    }
+
+    &__link {
+      overflow: hidden;
+      padding: 12px 4px;
+      font-size: 11px;
+      text-align: center;
+    }
+  }
+
+  .staff-main {
+    margin-left: 72px;
+  }
+
+  .staff-header {
+    min-height: 70px;
+    padding: 12px;
+
+    h3 {
+      font-size: 15px;
+    }
+
+    p {
+      font-size: 11px;
+    }
+  }
+
+  .staff-content {
+    padding: 12px;
+  }
+}

@@ -12,6 +12,10 @@ const api = async (endpoint, options = {}) => {
   // Gửi HTTP Request đến Backend
   const response = await fetch(`${BASE_URL}${endpoint}`, {
     ...options,
+
+    // Cho phép gửi và nhận cookie từ Backend
+    credentials: "include",
+
     headers: {
       "Content-Type": "application/json",
       ...options.headers,
