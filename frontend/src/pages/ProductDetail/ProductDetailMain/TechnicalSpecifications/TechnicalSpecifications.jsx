@@ -1,4 +1,5 @@
 import Table from "react-bootstrap/Table";
+import React from "react";
 
 import "./TechnicalSpecifications.scss";
 
@@ -15,13 +16,11 @@ const TechnicalSpecifications = ({ danhSachThongSo }) => {
 
       <Table responsive className="technical-specifications__table">
         <tbody>
-          {danhSachThongSo.map((nhom) => (
-            <>
+          {danhSachThongSo.map((nhom, index) => (
+            // Fragment có key để React nhận diện từng nhóm.
+            <React.Fragment key={`${nhom.tenNhom}-${index}`}>
               {/* Hàng tiêu đề nhóm */}
-              <tr
-                className="technical-specifications__group"
-                key={nhom.tenNhom}
-              >
+              <tr className="technical-specifications__group">
                 <td colSpan={2}>{nhom.tenNhom}</td>
               </tr>
 
@@ -37,7 +36,7 @@ const TechnicalSpecifications = ({ danhSachThongSo }) => {
                   </td>
                 </tr>
               ))}
-            </>
+            </React.Fragment>
           ))}
         </tbody>
       </Table>

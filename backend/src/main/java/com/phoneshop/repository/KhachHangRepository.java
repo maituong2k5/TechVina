@@ -16,6 +16,9 @@ import com.phoneshop.entity.KhachHang;
 public interface KhachHangRepository extends JpaRepository<KhachHang, Integer> {
 
 	// Tìm khách hàng theo email khi đăng nhập.
+	Optional<KhachHang> findByEmailAndTrangThai(String email, Boolean trangThai);
+
+	// Tìm khách hàng theo email.
 	Optional<KhachHang> findByEmail(String email);
 
 	// Kiểm tra email đã được sử dụng hay chưa.

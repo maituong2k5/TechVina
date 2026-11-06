@@ -39,6 +39,20 @@ public class GlobalExceptionHandler {
 	}
 
 	/**
+	 * Xử lý lỗi khi email hoặc mật khẩu đăng nhập không chính xác.
+	 *
+	 * @param exception thông tin lỗi xác thực
+	 * @return HTTP 401 Unauthorized
+	 */
+	@ExceptionHandler(InvalidCredentialsException.class)
+	public ResponseEntity<Map<String, String>> xuLyLoiDangNhap(InvalidCredentialsException exception) {
+
+		Map<String, String> response = Map.of("message", exception.getMessage());
+
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+	}
+
+	/**
 	 * Xử lý lỗi dữ liệu đăng ký đã tồn tại.
 	 *
 	 * @param exception ngoại lệ chứa thông báo lỗi
@@ -93,4 +107,5 @@ public class GlobalExceptionHandler {
 		// Trả về HTTP 500 Internal Server Error.
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
 	}
+
 }

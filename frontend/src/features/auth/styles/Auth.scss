@@ -1,0 +1,286 @@
+/* =========================================
+   AUTH PAGE - TRANG ĐĂNG NHẬP / ĐĂNG KÝ
+========================================= */
+
+.auth-page {
+  min-height: 100vh;
+  padding: 35px 5%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f3f6fb;
+}
+
+/* =========================================
+   AUTH CONTAINER - BỐ CỤC HAI CỘT
+========================================= */
+
+.auth-container {
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: stretch;
+
+  overflow: hidden;
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: 0 15px 45px rgba(23, 37, 84, 0.08);
+}
+
+/* =========================================
+   AUTH BANNER - BÊN TRÁI
+========================================= */
+
+.auth-banner {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+/* =========================================
+   AUTH FORM WRAPPER - VÙNG CHỨA FORM
+========================================= */
+
+.auth-form-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 45px;
+}
+
+/* =========================================
+   AUTH FORM - FORM ĐĂNG NHẬP / ĐĂNG KÝ
+========================================= */
+
+.auth-form {
+  width: 100%;
+  max-width: 440px;
+  padding: 20px;
+
+  background: #ffffff;
+  border-radius: 12px;
+
+  /* Tiêu đề */
+  &__title {
+    margin-bottom: 8px;
+
+    color: #172554;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  /* Mô tả */
+  &__description {
+    margin-bottom: 28px;
+
+    color: #64748b;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  /* Nhóm input */
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    margin-bottom: 20px;
+
+    label {
+      color: #334155;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      height: 46px;
+      padding: 0 14px;
+
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      outline: none;
+
+      font-size: 14px;
+      transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+
+      &:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      }
+
+      &::placeholder {
+        color: #94a3b8;
+      }
+    }
+  }
+
+  /* Ghi nhớ đăng nhập và quên mật khẩu */
+  &__remember {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 24px;
+
+    font-size: 13px;
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+
+      color: #475569;
+      cursor: pointer;
+    }
+
+    input {
+      cursor: pointer;
+      accent-color: #2563eb;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  /* Nút đăng nhập */
+  &__submit {
+    width: 100%;
+    height: 48px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition:
+      background-color 0.2s,
+      transform 0.2s;
+
+    &:hover {
+      background: #1d4ed8;
+    }
+
+    &:active {
+      transform: scale(0.99);
+    }
+  }
+
+  /* Liên kết đăng ký */
+  &__footer {
+    margin-top: 24px;
+
+    color: #64748b;
+    font-size: 14px;
+    text-align: center;
+
+    a {
+      color: #2563eb;
+      font-weight: 600;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+/* =========================================
+   RESPONSIVE - TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  .auth-page {
+    padding: 25px 3%;
+  }
+
+  .auth-container {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+  }
+
+  .auth-banner {
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .auth-form-wrapper {
+    padding: 35px 25px;
+  }
+}
+
+/* =========================================
+   RESPONSIVE - MOBILE
+========================================= */
+
+@media (max-width: 576px) {
+  .auth-page {
+    min-height: 100vh;
+    padding: 15px;
+    align-items: flex-start;
+  }
+
+  .auth-container {
+    border-radius: 14px;
+  }
+
+  .auth-banner {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .auth-form-wrapper {
+    padding: 25px 15px;
+  }
+
+  .auth-form {
+    max-width: 100%;
+    padding: 10px 5px;
+
+    &__title {
+      font-size: 24px;
+    }
+
+    &__description {
+      margin-bottom: 22px;
+    }
+  }
+}
