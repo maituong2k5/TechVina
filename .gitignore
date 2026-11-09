@@ -36,3 +36,6 @@
 .mylogin.cnf
 
 /database/full/phone_store_test.sql
+
+# Bỏ qua cấu hình Annotation Processing riêng của Eclipse.
+/backend/.factorypath
