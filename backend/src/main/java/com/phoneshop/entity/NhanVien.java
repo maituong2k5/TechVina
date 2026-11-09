@@ -39,6 +39,15 @@ public class NhanVien {
 	@Column(name = "Email", nullable = false, unique = true, length = 100)
 	private String email;
 
+	/**
+	 * Định danh duy nhất của nhân viên trên Amazon Cognito.
+	 *
+	 * Liên kết tài khoản STAFF hoặc ADMIN của Cognito với thông tin nhân viên trong
+	 * MySQL.
+	 */
+	@Column(name = "CognitoSub", unique = true, length = 36)
+	private String cognitoSub;
+
 	@Column(name = "MatKhau", nullable = false, length = 255)
 	private String matKhau;
 
@@ -98,6 +107,16 @@ public class NhanVien {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	// Lấy Cognito User ID của nhân viên.
+	public String getCognitoSub() {
+		return cognitoSub;
+	}
+
+	// Gán Cognito User ID cho nhân viên.
+	public void setCognitoSub(String cognitoSub) {
+		this.cognitoSub = cognitoSub;
 	}
 
 	public String getMatKhau() {

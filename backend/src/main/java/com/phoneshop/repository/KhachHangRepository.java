@@ -26,4 +26,21 @@ public interface KhachHangRepository extends JpaRepository<KhachHang, Integer> {
 
 	// Kiểm tra số điện thoại đã được sử dụng hay chưa.
 	boolean existsBySoDienThoai(String soDienThoai);
+
+	/**
+	 * Tìm khách hàng bằng Cognito User ID (sub).
+	 *
+	 * Sử dụng sau khi Spring Security xác thực Access Token do Amazon Cognito cấp.
+	 *
+	 * Không sử dụng CognitoSub do Frontend tự gửi để xác định danh tính người dùng.
+	 */
+	Optional<KhachHang> findByCognitoSub(String cognitoSub);
+
+	/**
+	 * Tìm khách hàng đang hoạt động bằng CognitoSub.
+	 *
+	 * Chỉ trả về khách hàng có TrangThai = true.
+	 */
+	Optional<KhachHang> findByCognitoSubAndTrangThai(String cognitoSub, Boolean trangThai);
+
 }

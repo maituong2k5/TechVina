@@ -32,11 +32,35 @@ public class KhachHang {
 	@Column(name = "Email", nullable = false, unique = true, length = 100)
 	private String email;
 
-	@Column(name = "SoDienThoai", nullable = false, unique = true, length = 15)
+	/**
+	 * Định danh duy nhất của khách hàng trên Amazon Cognito.
+	 *
+	 * Sử dụng CognitoSub để liên kết tài khoản Cognito với bản ghi khách hàng trong
+	 * MySQL.
+	 *
+	 * Cho phép null để giữ tương thích với dữ liệu cũ chưa được liên kết với
+	 * Cognito.
+	 */
+	@Column(name = "CognitoSub", unique = true, length = 36)
+	private String cognitoSub;
+
+	/**
+	 * Số điện thoại khách hàng.
+	 *
+	 * Cho phép NULL vì khách hàng đăng ký qua Amazon Cognito có thể chỉ cung cấp
+	 * email.
+	 */
+	@Column(name = "SoDienThoai", length = 15, unique = true, nullable = true)
 	private String soDienThoai;
 
-	// Thông tin tài khoản
-	@Column(name = "MatKhau", nullable = false, length = 255)
+	/**
+	 * Mật khẩu của hệ thống đăng nhập cũ.
+	 *
+	 * Cho phép NULL đối với tài khoản sử dụng Cognito. Không lưu mật khẩu Cognito
+	 * vào MySQL.
+	 *
+	 */
+	@Column(name = "MatKhau", length = 255, nullable = true)
 	private String matKhau;
 
 	// Ngày sinh
@@ -82,6 +106,16 @@ public class KhachHang {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	// Lấy Cognito User ID của khách hàng.
+	public String getCognitoSub() {
+		return cognitoSub;
+	}
+
+	// Gán Cognito User ID cho khách hàng.
+	public void setCognitoSub(String cognitoSub) {
+		this.cognitoSub = cognitoSub;
 	}
 
 	public String getSoDienThoai() {

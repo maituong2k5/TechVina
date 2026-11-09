@@ -21,3 +21,7 @@ pnpm-debug.log*
 # OS
 .DS_Store
 Thumbs.db
+
+# Bỏ qua cấu hình môi trường riêng của máy.
+.env.local
+.env.*.local

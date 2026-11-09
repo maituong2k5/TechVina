@@ -8,8 +8,9 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+//Bộ chuyển đổi thông tin JWT thành quyền trong Spring Security.
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class SecurityConfig {
@@ -31,7 +32,8 @@ public class SecurityConfig {
 	 * Cấu hình quy tắc bảo mật cho các REST API.
 	 */
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	public SecurityFilterChain securityFilterChain(HttpSecurity http,
+			JwtAuthenticationConverter cognitoJwtAuthenticationConverter) throws Exception {
 
 		http
 				// Tắt CSRF vì Backend sử dụng REST API và JWT.
@@ -68,11 +70,22 @@ public class SecurityConfig {
 						// API dành cho khách hàng và quản trị viên.
 						.requestMatchers("/api/khach-hang/**").hasAnyRole(RoleConfig.CUSTOMER, RoleConfig.ADMIN)
 
-						// Các API còn lại bắt buộc phải xác thực bằng JWT.
-						.anyRequest().authenticated());
+						// Các API còn lại bắt buộc phải xác thực.
+						.anyRequest().authenticated())
 
-		// Đăng ký JWT Filter chạy trước UsernamePasswordAuthenticationFilter.
-		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+				// Cấu hình xác thực JWT do Amazon Cognito cấp.
+				.oauth2ResourceServer(oauth2 -> oauth2
+
+						// Kích hoạt cơ chế xác thực JWT.
+						.jwt(jwt -> jwt
+
+								// Sử dụng bộ chuyển đổi quyền đã định nghĩa
+								// trong CognitoRoleConfig.java.
+								// Chuyển các nhóm Cognito thành quyền Spring Security:
+								// ADMIN -> ROLE_ADMIN
+								// STAFF -> ROLE_STAFF
+								// CUSTOMER -> ROLE_CUSTOMER
+								.jwtAuthenticationConverter(cognitoJwtAuthenticationConverter)));
 
 		return http.build();
 	}

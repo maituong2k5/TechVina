@@ -1,59 +1,40 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import authService from "../../../services/authService";
-import { useAuth } from "../../../context/AuthContext";
+import { useAuth as useCognitoAuth } from "react-oidc-context";
 import "./../styles/Auth.scss";
 
 /**
- * Component hiển thị biểu mẫu đăng nhập.
+ * Biểu mẫu đăng nhập TechVina sử dụng Amazon Cognito.
+ *
+ * Người dùng nhập email và mật khẩu trên trang Cognito,
+ * không gửi mật khẩu đến Spring Boot như cơ chế JWT cũ.
  */
 const LoginForm = () => {
-  const navigate = useNavigate();
-  const { dangNhap } = useAuth();
+  // Lấy trạng thái và chức năng đăng nhập Cognito.
+  const cognitoAuth = useCognitoAuth();
 
-  // Quản lý dữ liệu nhập từ người dùng.
-  const [email, setEmail] = useState("");
-  const [matKhau, setMatKhau] = useState("");
-
-  // Quản lý trạng thái xử lý đăng nhập.
-  const [dangXuLy, setDangXuLy] = useState(false);
+  // Quản lý thông báo lỗi.
   const [loiDangNhap, setLoiDangNhap] = useState("");
 
+  // Trạng thái xử lý đăng nhập.
+  const dangXuLy =
+    cognitoAuth.isLoading || cognitoAuth.activeNavigator === "signinRedirect";
+
   /**
-   * Gửi thông tin đăng nhập đến Backend.
+   * Chuyển hướng người dùng đến trang đăng nhập Cognito.
+   *
+   * Sau khi đăng nhập thành công, AuthProvider trong
+   * main.jsx xử lý Authorization Code và nhận token.
    */
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    setLoiDangNhap("");
-    setDangXuLy(true);
-
+  const handleLogin = async () => {
     try {
-      // Gọi API đăng nhập.
-      const response = await authService.dangNhap(email, matKhau);
+      setLoiDangNhap("");
 
-      // Lưu Access Token để sử dụng cho các API cần xác thực.
-      if (!response.accessToken) {
-        throw new Error("Backend không trả về Access Token.");
-      }
-
-      dangNhap(response);
-
-      // Điều hướng theo vai trò tài khoản.
-      if (response.vaiTro === "ADMIN") {
-        navigate("/admin");
-      } else if (response.vaiTro === "STAFF") {
-        navigate("/staff");
-      } else {
-        navigate("/");
-      }
+      // Bắt đầu quá trình đăng nhập Cognito.
+      await cognitoAuth.signinRedirect();
     } catch (error) {
-      console.error("Lỗi đăng nhập:", error);
+      console.error("Lỗi đăng nhập Cognito:", error);
 
-      setLoiDangNhap(error.message || "Đăng nhập thất bại. Vui lòng thử lại.");
-    } finally {
-      setDangXuLy(false);
+      setLoiDangNhap("Không thể mở trang đăng nhập. Vui lòng thử lại.");
     }
   };
 
@@ -65,64 +46,26 @@ const LoginForm = () => {
         Chào mừng bạn quay trở lại TechVina!
       </p>
 
-      <form onSubmit={handleSubmit}>
-        {/* Email đăng nhập */}
-        <div className="auth-form__group">
-          <label htmlFor="email">Email</label>
+      {/* Hiển thị lỗi nếu đăng nhập không thành công. */}
+      {(loiDangNhap || cognitoAuth.error) && (
+        <p className="auth-form__error" role="alert">
+          {loiDangNhap || "Xác thực không thành công. Vui lòng thử lại."}
+        </p>
+      )}
 
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="Nhập email của bạn"
-            autoComplete="username"
-            required
-          />
-        </div>
+      {/* Nút đăng nhập chính sử dụng Amazon Cognito. */}
+      <button
+        type="button"
+        className="auth-form__submit"
+        onClick={handleLogin}
+        disabled={dangXuLy}
+      >
+        {dangXuLy ? "Đang xử lý..." : "Đăng nhập với Amazon Cognito"}
+      </button>
 
-        {/* Mật khẩu đăng nhập */}
-        <div className="auth-form__group">
-          <label htmlFor="password">Mật khẩu</label>
-
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={matKhau}
-            onChange={(event) => setMatKhau(event.target.value)}
-            placeholder="Nhập mật khẩu"
-            autoComplete="current-password"
-            required
-          />
-        </div>
-
-        {/* Ghi nhớ đăng nhập */}
-        <div className="auth-form__remember">
-          <label>
-            <input type="checkbox" />
-            Ghi nhớ đăng nhập
-          </label>
-
-          <a href="/quen-mat-khau">Quên mật khẩu?</a>
-        </div>
-
-        {/* Hiển thị lỗi đăng nhập */}
-        {loiDangNhap && (
-          <p className="auth-form__error" role="alert">
-            {loiDangNhap}
-          </p>
-        )}
-
-        <button type="submit" className="auth-form__submit" disabled={dangXuLy}>
-          {dangXuLy ? "Đang đăng nhập..." : "Đăng nhập"}
-        </button>
-      </form>
-
+      {/* Người dùng có thể đăng ký trên trang Cognito. */}
       <p className="auth-form__footer">
-        Chưa có tài khoản?
-        <a href="/dang-ky"> Đăng ký ngay</a>
+        Chưa có tài khoản? Bạn có thể đăng ký trên trang đăng nhập Cognito.
       </p>
     </div>
   );

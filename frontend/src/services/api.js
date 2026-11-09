@@ -1,5 +1,5 @@
-// Địa chỉ Backend Spring Boot
-const BASE_URL = "http://localhost:8080";
+// Lấy địa chỉ Backend từ biến môi trường.
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 /**
  * Hàm gọi API dùng chung cho toàn bộ ứng dụng.

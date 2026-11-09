@@ -1,1 +1,38 @@
+
+# ==========================================
+# Eclipse / Spring Tools
+# ==========================================
 /.metadata/
+
+# ==========================================
+# Maven
+# ==========================================
+/backend/target/
+
+# ==========================================
+# Cấu hình môi trường Backend
+# ==========================================
+
+# Không đưa cấu hình thực tế lên GitHub.
+/backend/.env
+/backend/.env.*
+
+# Cho phép Git theo dõi file cấu hình mẫu.
+!/backend/.env.example
+
+# MySQL - khong dua backup day du len GitHub
+/database/private/
+
+# Khong dua file SQL tam len GitHub
+/database/full/*.tmp
+/database/full/*.tmp.sql
+
+# Khong dua Binary Log len GitHub
+/database/binlogs/
+*.000001
+*.index
+
+# Khong dua thong tin dang nhap len GitHub
+.mylogin.cnf
+
+/database/full/phone_store_test.sql
