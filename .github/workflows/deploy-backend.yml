@@ -49,6 +49,19 @@ jobs:
       - name: Verify JAR file
         run: test -s target/backend-0.0.1-SNAPSHOT.jar
 
+      # Kiểm tra thông tin OIDC thực tế
+      - name: Debug OIDC claims
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const token = await core.getIDToken('sts.amazonaws.com');
+            const payload = JSON.parse(
+              Buffer.from(token.split('.')[1], 'base64url').toString('utf8')
+            );
+            core.info('OIDC sub: ' + payload.sub);
+            core.info('OIDC aud: ' + payload.aud);
+            core.info('OIDC iss: ' + payload.iss);
+
       # Bước 5: Xác thực AWS bằng GitHub OIDC
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v6.3.0
