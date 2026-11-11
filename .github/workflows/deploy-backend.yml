@@ -72,3 +72,12 @@ jobs:
       # Bước 6: Kiểm tra xác thực AWS
       - name: Verify AWS identity
         run: aws sts get-caller-identity
+
+      # Bước 7: Upload file JAR lên Amazon S3
+      - name: Upload Backend JAR to S3
+        run: |
+          aws s3 cp target/backend-0.0.1-SNAPSHOT.jar \
+            "s3://techvina-backend-artifacts-2026/releases/backend-${GITHUB_SHA}.jar" \
+            --region ap-southeast-1 \
+            --no-progress \
+            --only-show-errors
