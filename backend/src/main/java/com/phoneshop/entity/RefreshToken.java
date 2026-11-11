@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
  * đăng nhập.
  */
 @Entity
-@Table(name = "RefreshToken")
+@Table(name = "refreshtoken")
 public class RefreshToken {
 	// Khóa chính của RefreshToken.
 	@Id
