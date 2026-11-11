@@ -10,7 +10,7 @@ const AuthLayout = ({ children }) => {
         {/* Bên trái: Banner TechVina */}
         <div className="auth-banner">
           <img
-            src="/src//assets/images/auth-banner.png"
+            src="/images/banners/auth-banner.png"
             alt="Banner giới thiệu TechVina"
           />
         </div>

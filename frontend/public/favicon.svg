@@ -1,0 +1,12 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+
+  <!-- Nền xanh TechVina -->
+  <rect width="64" height="64" rx="14" fill="#1769D2"></rect>
+
+  <!-- Chữ viết tắt TechVina -->
+  <text x="32" y="43" font-family="Arial, sans-serif" font-size="31" font-weight="bold" fill="#FFFFFF" text-anchor="middle">
+    TV
+  </text>
+
+</svg>

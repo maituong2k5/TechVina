@@ -3,7 +3,7 @@
  */
 
 // Địa chỉ Backend Spring Boot
-const API_URL = "http://localhost:8080/api/thong-so-ky-thuat";
+const API_URL = "/api/thong-so-ky-thuat";
 
 /**
  * Lấy danh sách thông số kỹ thuật theo mã sản phẩm.

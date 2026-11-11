@@ -1,5 +1,5 @@
 // API lấy danh sách ảnh theo phiên bản sản phẩm.
-const API_URL = "http://localhost:8080/api/phien-ban";
+const API_URL = "/api/phien-ban";
 
 /**
  * Lấy danh sách ảnh của một phiên bản sản phẩm.

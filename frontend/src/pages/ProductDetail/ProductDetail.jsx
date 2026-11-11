@@ -184,6 +184,7 @@ const ProductDetail = () => {
         <div className="product-detail-main">
           <div className="product-detail-main__gallery">
             <ProductGallery
+              key={selectedMaPB}
               selectedMaPB={selectedMaPB}
               danhSachAnh={anhTheoPhienBan[selectedMaPB] || []}
               loadingAnh={loadingAnhTheoPhienBan}

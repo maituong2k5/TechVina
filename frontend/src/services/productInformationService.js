@@ -2,7 +2,7 @@
  * Service xử lý API thông tin cơ bản của sản phẩm.
  */
 
-const API_URL = "http://localhost:8080/api/san-pham";
+const API_URL = "/api/san-pham";
 
 /**
  * Lấy thông tin sản phẩm theo mã sản phẩm.

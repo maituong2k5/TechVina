@@ -3,7 +3,7 @@
  */
 
 // Địa chỉ API lấy danh sách phiên bản sản phẩm.
-const API_URL = "http://localhost:8080/api/san-pham";
+const API_URL = "/api/san-pham";
 
 /**
  * Lấy danh sách phiên bản theo mã sản phẩm.
