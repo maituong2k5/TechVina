@@ -82,6 +82,20 @@ jobs:
             --no-progress \
             --only-show-errors
 
+      # Kiem tra cu phap script trien khai
+      - name: Validate Backend deployment script
+        run: bash -n "$GITHUB_WORKSPACE/.github/scripts/deploy-backend.sh"
+
+      # Upload script trien khai len Amazon S3
+      - name: Upload Backend deployment script to S3
+        run: |
+          aws s3 cp \
+            "$GITHUB_WORKSPACE/.github/scripts/deploy-backend.sh" \
+            "s3://techvina-backend-artifacts-2026/releases/deploy-backend-${GITHUB_SHA}.sh" \
+            --region ap-southeast-1 \
+            --no-progress \
+            --only-show-errors
+
       # Bước 8: Kiểm tra GitHub Actions gửi lệnh đến EC2
       - name: Verify SSM connection to EC2
         run: |
