@@ -51,6 +51,9 @@ public class SecurityConfig {
 				// Cấu hình quyền truy cập API.
 				.authorizeHttpRequests(auth -> auth
 
+						// Cho phép kiểm tra sức khỏe Backend không cần JWT.
+						.requestMatchers(HttpMethod.GET, "/actuator/health").permitAll()
+
 						// Cho phép đăng ký và đăng nhập mà không cần Access Token.
 						.requestMatchers("/api/auth/register", "/api/auth/login", "/api/auth/refresh",
 								"/api/auth/logout", "/api/san-pham/noi-bat")
