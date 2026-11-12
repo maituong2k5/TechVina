@@ -92,6 +92,13 @@ jobs:
       - name: Validate Backend deployment script
         run: bash -n "$GITHUB_WORKSPACE/.github/scripts/deploy-backend.sh"
 
+      # Kiem thu logic Rollback
+      - name: Test backend rollback logic
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash "$GITHUB_WORKSPACE/.github/tests/test-backend-rollback.sh"
+
       # Upload script trien khai len Amazon S3
       - name: Upload Backend deployment script to S3
         run: |
