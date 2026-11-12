@@ -172,9 +172,9 @@ jobs:
             --query '{Status:Status,Output:StandardOutputContent}' \
             --output json
 
-      # Buoc 10: Trien khai Backend thu cong qua SSM
+      # Buoc 10: Tu dong trien khai Backend qua SSM
       - name: Deploy Backend to EC2 via SSM
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.deploy == true && github.ref == 'refs/heads/master' }}
+        if: ${{ github.ref == 'refs/heads/master' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.deploy == true)) }}
         shell: bash
         run: |
           set -euo pipefail
