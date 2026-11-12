@@ -139,3 +139,24 @@ else
   echo "ERROR: Backend health check failed"
   exit 1
 fi
+
+
+# Buoc 7: Don dep Backup cu sau khi Deploy thanh cong
+echo "Cleaning up old Backend backups..."
+
+# Lay danh sach Backup tu dong, moi nhat truoc
+mapfile -t BACKUPS < <(
+  find "$BACKUP_DIR" -maxdepth 1 -type f \
+    -name 'backend-before-????????T??????Z-*.jar' \
+    -printf '%f\n' | LC_ALL=C sort -r
+)
+
+# Chi giu lai 3 ban Backup tu dong moi nhat
+if (( ${#BACKUPS[@]} > 3 )); then
+  for OLD_BACKUP in "${BACKUPS[@]:3}"; do
+    rm -f -- "$BACKUP_DIR/$OLD_BACKUP" ||
+      echo "WARNING: Could not delete $OLD_BACKUP"
+  done
+fi
+
+echo "Backup cleanup completed"
