@@ -186,9 +186,10 @@ const HeaderMain = () => {
                   </Dropdown.Item>
 
                   {/* Kiểm tra liên kết Cognito với MySQL. */}
-                  <Dropdown.Item as="button" onClick={testAccountLink}>
-                    Kiểm tra liên kết MySQL
-                  </Dropdown.Item>
+                  <Dropdown.Item
+                    as="button"
+                    onClick={testAccountLink}
+                  ></Dropdown.Item>
                   <Dropdown.Divider />
 
                   {/* Đăng xuất Amazon Cognito */}
