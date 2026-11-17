@@ -14,14 +14,13 @@
   }
 
   &__discount {
-    display: inline-block;
-    padding: 4px 14px;
-    margin-bottom: 7px;
-    border-radius: 20px;
-    background-color: #ef233c;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
   }
 
   &__name {
@@ -78,13 +77,19 @@
   /* Giá bán và tồn kho */
   &__price {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 10px;
     padding: 12px 0;
     margin-bottom: 12px;
     border-bottom: 1px solid #eaecf0;
+
+    > div:first-child {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
   }
 
   &__current-price {
@@ -94,10 +99,33 @@
     font-weight: 700;
   }
 
-  &__old-price {
+  &__current-price {
+    margin-right: 0;
+    color: #ef233c;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  &__original-price {
     color: #98a2b3;
     font-size: 15px;
+    font-weight: 500;
     text-decoration: line-through;
+    line-height: 1.2;
+  }
+
+  &__discount-percent {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: #ef233c;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
   }
 
   &__stock {

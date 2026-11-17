@@ -22,11 +22,19 @@ const ProductDetail = () => {
   const { maSP, maPB } = useParams();
 
   // Danh sách đường dẫn điều hướng
+  const [thongTinSanPham, setThongTinSanPham] = useState(null);
+  // Breadcrumb tự động cập nhật theo thông tin sản phẩm từ API
   const breadcrumbItems = [
     { label: "Trang chủ", to: "/" },
-    { label: "Điện thoại", to: "/dien-thoai" },
-    { label: "Xiaomi", to: "/hang/xiaomi" },
-    { label: "Xiaomi 15 12GB 256GB" },
+    {
+      label: thongTinSanPham?.tenDanhMuc || "Danh mục",
+    },
+    {
+      label: thongTinSanPham?.tenHang || "Thương hiệu",
+    },
+    {
+      label: thongTinSanPham?.tenSP || "Đang tải sản phẩm...",
+    },
   ];
 
   // Danh sách nhóm thông số kỹ thuật
@@ -42,9 +50,6 @@ const ProductDetail = () => {
 
   // Lưu mã phiên bản sản phẩm đang được chọn.
   const [selectedMaPB, setSelectedMaPB] = useState(null);
-
-  // Lưu thông tin cơ bản của sản phẩm.
-  const [thongTinSanPham, setThongTinSanPham] = useState(null);
 
   // Trạng thái tải dữ liệu
   const [loading, setLoading] = useState(true);

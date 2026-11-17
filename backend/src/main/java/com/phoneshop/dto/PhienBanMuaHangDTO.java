@@ -25,6 +25,15 @@ public class PhienBanMuaHangDTO {
 	// Giá bán hiện tại
 	private BigDecimal gia;
 
+	// Giá bán sau khi áp dụng chương trình giảm giá.
+	private BigDecimal giaSauGiam;
+
+	// Phần trăm giảm giá thực tế.
+	private BigDecimal phanTramGiam;
+
+	// Xác định phiên bản có giảm giá hợp lệ hay không.
+	private Boolean coGiamGia = false;
+
 	// Tổng số lượng tồn kho tại tất cả các kho
 	private Long soLuongTon;
 
@@ -104,5 +113,29 @@ public class PhienBanMuaHangDTO {
 
 	public void setSoLuongTon(Long soLuongTon) {
 		this.soLuongTon = soLuongTon;
+	}
+
+	public BigDecimal getGiaSauGiam() {
+		return giaSauGiam;
+	}
+
+	public void setGiaSauGiam(BigDecimal giaSauGiam) {
+		this.giaSauGiam = giaSauGiam;
+	}
+
+	public BigDecimal getPhanTramGiam() {
+		return phanTramGiam;
+	}
+
+	public void setPhanTramGiam(BigDecimal phanTramGiam) {
+		this.phanTramGiam = phanTramGiam;
+	}
+
+	public Boolean getCoGiamGia() {
+		return coGiamGia;
+	}
+
+	public void setCoGiamGia(Boolean coGiamGia) {
+		this.coGiamGia = coGiamGia;
 	}
 }

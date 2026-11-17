@@ -12,7 +12,7 @@ export default defineConfig({
     // Chuyển tiếp API từ localhost đến Backend qua CloudFront
     proxy: {
       "/api": {
-        target: "https://d3eaxah39tohf.cloudfront.net",
+        target: "http://localhost:8080",
         changeOrigin: true,
         secure: true,
       },

@@ -21,7 +21,11 @@ export const CartProvider = ({ children }) => {
       if (existingItem) {
         return prevItems.map((item) =>
           item.maPB === product.maPB
-            ? { ...item, quantity: item.quantity + quantity }
+            ? {
+                ...item,
+                gia: product.gia,
+                quantity: item.quantity + quantity,
+              }
             : item,
         );
       }
@@ -30,15 +34,39 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  // Xóa một phiên bản sản phẩm khỏi giỏ hàng.
+  const removeFromCart = (maPB) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.maPB !== maPB));
+  };
+
+  // Cập nhật số lượng của một phiên bản trong giỏ hàng.
+  const updateQuantity = (maPB, quantity) => {
+    if (!Number.isInteger(quantity) || quantity < 1) return;
+
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.maPB === maPB ? { ...item, quantity } : item,
+      ),
+    );
+  };
+
   // Tổng số sản phẩm trong giỏ hàng, tính cả số lượng từng sản phẩm.
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  // Tính tổng tiền giỏ hàng theo giá bán sau giảm.
+  const cartTotal = cartItems.reduce(
+    (total, item) => total + Number(item.gia ?? 0) * item.quantity,
+    0,
+  );
 
   return (
     <CartContext.Provider
       value={{
         cartItems,
         cartCount,
+        cartTotal,
         addToCart,
+        removeFromCart,
+        updateQuantity,
       }}
     >
       {children}

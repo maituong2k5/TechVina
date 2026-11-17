@@ -164,7 +164,7 @@ const ProductInformation = ({
       ram: phienBanDuocChon.ram,
       rom: phienBanDuocChon.rom,
       tenMau: phienBanDuocChon.tenMau,
-      gia: phienBanDuocChon.gia,
+      gia: phienBanDuocChon.giaSauGiam ?? phienBanDuocChon.gia,
       anh: anhTheoPhienBan[phienBanDuocChon.maPB]?.[0] || null,
     };
 
@@ -210,12 +210,26 @@ const ProductInformation = ({
       </div>
 
       {/* Giá bán và số lượng tồn kho */}
-      {/* Giá bán và số lượng tồn kho */}
+
       <div className="product-information__price">
         <div>
           <span className="product-information__current-price">
-            {formatCurrency(phienBanDuocChon?.gia)}
+            {formatCurrency(
+              phienBanDuocChon?.giaSauGiam ?? phienBanDuocChon?.gia,
+            )}
           </span>
+
+          {phienBanDuocChon?.coGiamGia && (
+            <div className="product-information__discount">
+              <span className="product-information__original-price">
+                {formatCurrency(phienBanDuocChon.gia)}
+              </span>
+
+              <span className="product-information__discount-percent">
+                -{Math.round(phienBanDuocChon.phanTramGiam)}%
+              </span>
+            </div>
+          )}
         </div>
 
         <span className="product-information__stock">
